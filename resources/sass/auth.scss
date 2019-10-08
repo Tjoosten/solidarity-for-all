@@ -73,3 +73,7 @@ body.my-login-page {
     color: #888;
     text-align: center;
 }
+
+.btn-orange {
+    @include button-variant(#fac859, #fac859);
+}

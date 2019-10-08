@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="form-group no-margin">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-orange text-white btn-block">
                                         Login
                                     </button>
                                 </div>
