@@ -38,10 +38,20 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
                             <a class="nav-link" href="#">
                                 {{ ucfirst($currentUser->name) }}
                             </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="text-danger nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fe fe-power"></i>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
