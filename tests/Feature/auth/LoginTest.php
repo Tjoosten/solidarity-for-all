@@ -112,14 +112,11 @@ class LoginTest extends TestCase
      */
     public function testUserCanLoginWithCorrectCredentials(): void
     {
-        $user = factory(User::class)->create([
-            'password' => Hash::make($password = 'i-love-laravel'),
-        ]);
-        $response = $this->post($this->loginPostRoute(), [
-            'email' => $user->email,
-            'password' => $password,
-        ]);
+        $user = factory(User::class)->create(['password' => $password = 'i-love-laravel',]);
+
+        $response = $this->post($this->loginPostRoute(), ['email' => $user->email, 'password' => $password]);
         $response->assertRedirect($this->successfulLoginRoute());
+
         $this->assertAuthenticatedAs($user);
     }
 
@@ -129,7 +126,7 @@ class LoginTest extends TestCase
      */
     public function testRememberMeFunctionality(): void
     {
-        $user = factory(User::class)->create(['id' => random_int(1, 100), 'password' => Hash::make($password = 'i-love-laravel')]);
+        $user = factory(User::class)->create(['id' => random_int(1, 100), 'password' => $password = 'i-love-laravel']);
 
         $response = $this->post($this->loginPostRoute(), ['email' => $user->email, 'password' => $password, 'remember' => 'on']);
 

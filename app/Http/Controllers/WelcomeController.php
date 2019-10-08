@@ -13,7 +13,7 @@ class WelcomeController extends Controller
 {
     /**
      * Welcome page off the application.
-     *
+     * ---
      * For now this is the login view because there is not really enough for creating a frontend website.
      *
      * @return Renderable
