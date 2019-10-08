@@ -1,0 +1,19 @@
+// html,
+// body {
+//  overflow-x: hidden; /* Prevent scroll on narrow devices */
+// }
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px; // Margin bottom by footer height
+}
+
+a.disabled,
+a:disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
