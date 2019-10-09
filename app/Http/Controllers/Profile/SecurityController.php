@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\SecurityFormRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -44,10 +45,14 @@ class SecurityController extends Controller
      * Method for updating the account security from the authenticated user.
      *
      * @param  SecurityFormRequest $request
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function update(SecurityFormRequest $request): Renderable
+    public function update(SecurityFormRequest $request): RedirectResponse
     {
+        if ($this->auth->user()->update($request->except('old_password'))) {
+            flash('Uw Account beveiliging is met succes aangepast');
+        }
 
+        return redirect()->route('profile.settings.security');
     }
 }

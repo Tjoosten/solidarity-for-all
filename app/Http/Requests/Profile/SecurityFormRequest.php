@@ -2,29 +2,26 @@
 
 namespace App\Http\Requests\Profile;
 
+use ActivismeBe\ValidationRules\Rules\MatchUserPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class SecurityFormRequest
+ *
+ * @package App\Http\Requests\Profile
+ */
 class SecurityFormRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'old_password' => ['required', 'string', new MatchUserPassword($this->user())],
+            'password'     => ['required', 'string', 'min:8', 'confirmed']
         ];
     }
 }
