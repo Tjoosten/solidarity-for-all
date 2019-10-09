@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Profile\InformationController;
+use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\WelcomeController;
 
 Auth::routes(['register' => false]);
@@ -23,3 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Account settings routes
 Route::get('/account-informatie', [InformationController::class, 'index'])->name('profile.settings.info');
 Route::patch('/account-informatie', [InformationController::class, 'update'])->name('profile.settings.info');
+Route::get('/account-beveiliging', [SecurityController::class, 'index'])->name('profile.settings.security');
+Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->name('profile.settings.security');
