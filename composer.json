@@ -9,10 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "actb/laravel-form-helpers": "^1.5",
+        "actb/laravel-validation-rules": "^1.2",
         "fideloper/proxy": "^4.0",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-permission": "^3.0"
+        "spatie/laravel-permission": "^3.0",
+        "watson/active": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

@@ -49,6 +49,11 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
+    /**
+     * Bind the guest middelware route to a method.
+     *
+     * @return string
+     */
     protected function guestMiddlewareRoute(): string
     {
         return route('home');
