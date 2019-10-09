@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Profile\InformationController;
 use App\Http\Controllers\Profile\SecurityController;
+use App\Http\Controllers\Users\UsersControllers;
 use App\Http\Controllers\WelcomeController;
 
 Auth::routes(['register' => false]);
@@ -26,3 +27,6 @@ Route::get('/account-informatie', [InformationController::class, 'index'])->name
 Route::patch('/account-informatie', [InformationController::class, 'update'])->name('profile.settings.info');
 Route::get('/account-beveiliging', [SecurityController::class, 'index'])->name('profile.settings.security');
 Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->name('profile.settings.security');
+
+// User manegement routes
+Route::get('/gebruikers', [UsersControllers::class, 'index'])->name('users.index');

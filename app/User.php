@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -21,7 +22,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'phone_number'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,5 +47,15 @@ class User extends Authenticatable
     public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Method for tracking that the user is online or not.
+     *
+     * @return bool
+     */
+    public function isOnline(): bool
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 }

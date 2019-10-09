@@ -59,7 +59,11 @@
 
             <div class="nav-scroller bg-white shadow-sm">
                 <nav class="nav nav-underline">
-
+                    @if ($currentUser->hasAnyRole(['admin', 'webmaster']))
+                        <a href="{{ route('users.index') }}" class="{{ active('users.*') }} nav-link">
+                            <i class="fe fe-users mr-1 text-muted"></i> Gebruikers
+                        </a>
+                    @endif
                 </nav>
             </div>
 

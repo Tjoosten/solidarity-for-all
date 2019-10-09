@@ -11875,6 +11875,45 @@ a:disabled {
   white-space: nowrap;
 }
 
+.btn-orange {
+  color: #fff !important;
+  color: #212529;
+  background-color: #fac859;
+  border-color: #fac859;
+}
+
+.btn-orange:hover {
+  color: #212529;
+  background-color: #f9bc34;
+  border-color: #f9b827;
+}
+
+.btn-orange:focus,
+.btn-orange.focus {
+  box-shadow: 0 0 0 0.2rem rgba(217, 176, 82, 0.5);
+}
+
+.btn-orange.disabled,
+.btn-orange:disabled {
+  color: #212529;
+  background-color: #fac859;
+  border-color: #fac859;
+}
+
+.btn-orange:not(:disabled):not(.disabled):active,
+.btn-orange:not(:disabled):not(.disabled).active,
+.show > .btn-orange.dropdown-toggle {
+  color: #212529;
+  background-color: #f9b827;
+  border-color: #f8b31b;
+}
+
+.btn-orange:not(:disabled):not(.disabled):active:focus,
+.btn-orange:not(:disabled):not(.disabled).active:focus,
+.show > .btn-orange.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(217, 176, 82, 0.5);
+}
+
 .text-white-50 {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -11893,5 +11932,35 @@ a:disabled {
 
 .lh-150 {
   line-height: 1.5;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.form-search {
+  width: 260px !important;
+}
+
+.badge-online {
+  background-color: #C6F6D5;
+  color: #48BB78;
+}
+
+.badge-offline {
+  background-color: #FED7D7;
+  color: #E53E3E;
 }
 

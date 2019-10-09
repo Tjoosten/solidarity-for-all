@@ -1,3 +1,8 @@
 .btn {
     white-space: nowrap;
 }
+
+.btn-orange {
+    color: $white !important;
+    @include button-variant(#fac859, #fac859);
+}

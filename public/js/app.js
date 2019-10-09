@@ -36997,9 +36997,9 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gebruiker\Documents\solidarity-for-all\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Gebruiker\Documents\solidarity-for-all\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Gebruiker\Documents\solidarity-for-all\resources\sass\auth.scss */"./resources/sass/auth.scss");
+__webpack_require__(/*! /Users/timjoosten/Documents/solidaruty-for-all/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/timjoosten/Documents/solidaruty-for-all/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/timjoosten/Documents/solidaruty-for-all/resources/sass/auth.scss */"./resources/sass/auth.scss");
 
 
 /***/ })
