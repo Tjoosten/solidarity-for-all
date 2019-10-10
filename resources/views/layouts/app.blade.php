@@ -63,6 +63,18 @@
                         <a href="{{ route('users.index') }}" class="{{ active('users.*') }} nav-link">
                             <i class="fe fe-users mr-1 text-muted"></i> Gebruikers
                         </a>
+
+                        <a href="" class="nav-link">
+                            <i class="fe fe-map-pin mr-1 text-muted"></i> Locaties
+                        </a>
+
+                        <a href="" class="nav-link">
+                            <i class="fe fe-tag mr-1 text-muted"></i> Categorieen
+                        </a>
+
+                        <a href="" class="nav-link">
+                            <i class="fe fe-list mr-1 text-muted"></i> Inventaris
+                        </a>
                     @endif
                 </nav>
             </div>
