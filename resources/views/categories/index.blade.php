@@ -7,9 +7,11 @@
             <div class="page-subtitle">Overzicht</div>
 
             <div class="d-flex page-options">
-                <a href="" class="btn btn-orange shadow-sm">
-                    <i class="fe fe-plus"></i>
-                </a>
+                @if ($currentUser->hasAnyRole(['admin', 'webmaster'])) {{-- user is permitted to perform a create operation --}}
+                    <a href="{{ route('tags.create') }}" class="btn btn-orange shadow-sm">
+                        <i class="fe fe-plus"></i>
+                    </a>
+                @endif {{-- END authorization check --}}
 
                 <form method="GET" action="" class="border-0 shadow-sm form-search form-inline ml-2">
                     <div class="form-group has-search">
@@ -48,12 +50,12 @@
 
                                 <td> {{-- Options --}}
                                     <span class=float-right>
-                                        <a href="" class="text-decoration-none text-muted mr-1">
+                                        <a href="{{ route('tags.show', $category) }}" class="text-decoration-none text-muted mr-1">
                                             <i class="fe fe-eye"></i>
                                         </a>
 
                                         @can ('delete', $category) {{-- User is permitted to remoeve te category --}}
-                                            <a href="" class="text-decoration-none text-danger">
+                                            <a href="{{ route('tags.delete', $category) }}" class="text-decoration-none text-danger">
                                                 <i class="fe fe-trash-2"></i>
                                             </a>
                                         @endcan {{-- /// END permission check --}}

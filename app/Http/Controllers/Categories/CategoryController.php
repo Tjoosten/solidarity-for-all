@@ -33,4 +33,14 @@ class CategoryController extends Controller
     {
         return view('categories.index', ['categories' => $categories->paginate()]);
     }
+
+    /**
+     * Method for displaying the category create view.
+     *
+     * @return Renderable
+     */
+    public function create(): Renderable
+    {
+        return view('categories.create');
+    }
 }
