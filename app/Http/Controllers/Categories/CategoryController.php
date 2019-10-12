@@ -57,7 +57,7 @@ class CategoryController extends Controller
     public function store(CategoryFormRequest $request, Category $category): RedirectResponse
     {
         DB::transaction(static function () use ($request, $category): void {
-            $category = $category->create($request->all())->setCreator($request-user());
+            $category = $category->create($request->all())->setCreator($request->user());
             flash($category->name . ' is toegevoegd als item categorie in de applicatie.');
         });
 
