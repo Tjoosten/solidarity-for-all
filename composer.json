@@ -12,6 +12,7 @@
         "actb/laravel-form-helpers": "^1.5",
         "actb/laravel-validation-rules": "^1.2",
         "fideloper/proxy": "^4.0",
+        "friendsofphp/php-cs-fixer": "^2.15",
         "laracasts/flash": "^3.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",

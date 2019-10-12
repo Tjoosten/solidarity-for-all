@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Categories;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 
 /**
  * Class CategoryController

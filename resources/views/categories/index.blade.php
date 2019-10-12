@@ -44,7 +44,12 @@
                                 <td class="font-weight-bold text-secondary">{{ ucfirst($category->creator->name ?? config('app.name')) }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->items_count }} items</td>
-                                <td>{{  }}</td>
+                                <td>{{ $category->created_at->format('d/m/Y') }}</td>
+
+                                <td> {{-- Options --}}
+                                    @can ('delete', $category) {{-- User is permitted to remoeve te category --}}
+                                    @endcan {{-- /// END permission check --}}
+                                </td>{{-- /// Options --}}
                             </tr>
                         @empty {{-- There are currently no categories found --}}
                             <tr>

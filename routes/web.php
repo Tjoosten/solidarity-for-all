@@ -20,7 +20,7 @@ use App\Http\Controllers\WelcomeController;
 Auth::routes(['register' => false]);
 
 // Index pages
-Route::get('/',[WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Account settings routes

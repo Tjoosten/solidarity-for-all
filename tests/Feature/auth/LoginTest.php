@@ -3,10 +3,10 @@
 namespace Tests\Feature\Auth;
 
 use App\User;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Class LoginTest
@@ -208,7 +208,8 @@ class LoginTest extends TestCase
         $response->assertRedirect($this->loginGetRoute());
         $response->assertSessionHasErrors('email');
 
-        $this->assertRegExp($this->getTooManyLoginAttemptsMessage(),
+        $this->assertRegExp(
+            $this->getTooManyLoginAttemptsMessage(),
             collect($response->baseResponse->getSession()->get('errors')->getBag('default')->get('email'))->first()
         );
 
