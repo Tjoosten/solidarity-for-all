@@ -15,12 +15,13 @@
     </div>
 
     <div class="container-fluid pb-3">
-        <form method="POST" action="" class="card card-body shadow-sm border-0 shadow-sm">
+        <form method="POST" action="{{ route('tags.create') }}" class="card card-body shadow-sm border-0 shadow-sm">
             <h6 class="border-bottom border-gray pb-1 mb-3">
                 <i class="fe fe-plus mr-1 text-secondary"></i> Nieuwe item categorie toevoegen
             </h6>
 
             @csrf {{-- Form field protection --}}
+            @include('flash::message') {{-- Flash session view partial --}}
 
             <div class="form-row">
                 <div class="form-group col-7">
@@ -39,7 +40,7 @@
 
             <div class="form-row">
                 <div class="form-group mb-0 col-12">
-                    <button type="button" class="btn btn-secondary">
+                    <button type="submit" class="btn btn-secondary">
                         <i class="fe fe-plus mr-1"></i> Toevoegen
                     </button>
 
