@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Profile\InformationController;
 use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\Users\UsersControllers;
@@ -19,7 +20,7 @@ use App\Http\Controllers\WelcomeController;
 Auth::routes(['register' => false]);
 
 // Index pages
-Route::get('/',[WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Account settings routes
@@ -28,5 +29,8 @@ Route::patch('/account-informatie', [InformationController::class, 'update'])->n
 Route::get('/account-beveiliging', [SecurityController::class, 'index'])->name('profile.settings.security');
 Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->name('profile.settings.security');
 
-// User manegement routes
+// Item category routes
+Route::get('/categorieen', [CategoryController::class, 'index'])->name('tags.overview');
+
+// User management routes
 Route::get('/gebruikers', [UsersControllers::class, 'index'])->name('users.index');

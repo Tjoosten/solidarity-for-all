@@ -11804,6 +11804,10 @@ a:disabled {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.fe-navbar {
+  color: #343a40;
+}
+
 .nav-scroller {
   position: relative;
   z-index: 2;
@@ -11831,7 +11835,7 @@ a:disabled {
 }
 
 .nav-underline .nav-link:hover {
-  color: #007bff;
+  color: #343a40;
 }
 
 .nav-underline .active {

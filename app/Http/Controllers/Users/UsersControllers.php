@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 
 /**
  * Class UsersControllers
@@ -21,7 +20,7 @@ class UsersControllers extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'role:admin,webmaster']);
     }
 
     /**
