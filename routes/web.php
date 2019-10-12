@@ -31,6 +31,8 @@ Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->nam
 
 // Item category routes
 Route::get('/categorieen', [CategoryController::class, 'index'])->name('tags.overview');
+Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('tags.create');
+Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('tags.create');
 
 // User management routes
 Route::get('/gebruikers', [UsersControllers::class, 'index'])->name('users.index');
