@@ -18,8 +18,12 @@ class CategoryFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $rules = ['name' => ['string', 'required', 'max:255', 'unique:categories']];
+
+        if ($this->isMethod('UPDATE')) {
+            $rules = ['name' => ['string', 'required', 'max:255', 'unique:categories,name,' . $this->category->id]];
+        }
+
+        return $rules;
     }
 }
