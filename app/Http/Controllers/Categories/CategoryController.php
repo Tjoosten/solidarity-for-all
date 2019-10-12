@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function index(Category $categories): Renderable
     {
-        return view('categories.index', ['categories' => $categories->paginate()]);
+        return view('categories.index', ['categories' => $categories->withCount('items')->paginate()]);
     }
 
     /**
