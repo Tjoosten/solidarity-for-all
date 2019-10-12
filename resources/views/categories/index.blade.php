@@ -47,8 +47,17 @@
                                 <td>{{ $category->created_at->format('d/m/Y') }}</td>
 
                                 <td> {{-- Options --}}
-                                    @can ('delete', $category) {{-- User is permitted to remoeve te category --}}
-                                    @endcan {{-- /// END permission check --}}
+                                    <span class=float-right>
+                                        <a href="" class="text-decoration-none text-muted mr-1">
+                                            <i class="fe fe-eye"></i>
+                                        </a>
+
+                                        @can ('delete', $category) {{-- User is permitted to remoeve te category --}}
+                                            <a href="" class="text-decoration-none text-danger">
+                                                <i class="fe fe-trash-2"></i>
+                                            </a>
+                                        @endcan {{-- /// END permission check --}}
+                                    </span>
                                 </td>{{-- /// Options --}}
                             </tr>
                         @empty {{-- There are currently no categories found --}}
