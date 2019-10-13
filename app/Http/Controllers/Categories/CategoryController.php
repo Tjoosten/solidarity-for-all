@@ -38,6 +38,17 @@ class CategoryController extends Controller
     }
 
     /**
+     * Method for displaying the information about the category in the application.
+     *
+     * @param  Category $category The unique identifier from the given resource.
+     * @return Renderable
+     */
+    public function show(Category $category): Renderable
+    {
+        return view('categories.show', compact('category'));
+    }
+
+    /**
      * Method for displaying the category create view.
      *
      * @return Renderable
