@@ -35,5 +35,7 @@ Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('ta
 Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('tags.create');
 Route::get('/categories/verwijder/{category}', [CategoryController::class])->name('tags.delete');
 Route::get('/categorie/{category}', [CategoryController::class, 'show'])->name('tags.show');
+Route::patch('/categorie/{category}', [CategoryController::class, 'update'])->name('tags.update');
+
 // User management routes
 Route::get('/gebruikers', [UsersControllers::class, 'index'])->name('users.index');

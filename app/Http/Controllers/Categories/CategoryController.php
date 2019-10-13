@@ -49,6 +49,23 @@ class CategoryController extends Controller
     }
 
     /**
+     * Method for updating the category information in the application.
+     *
+     * @param  CategoryFormRequest  $request    The request instance that holds all the request information.
+     * @param  Category             $category   The resource entity form the given category.
+     * @return RedirectResponse
+     */
+    public function update(CategoryFormRequest $request, Category $category): RedirectResponse
+    {
+        DB::transaction(static function () use ($request, $category): void {
+            $category->update($request->all());
+            flash($category->name . ' Is gewijzigd in de applicatie.');
+        });
+
+        return back(); // Redirect the user back to the previous page.
+    }
+
+    /**
      * Method for displaying the category create view.
      *
      * @return Renderable

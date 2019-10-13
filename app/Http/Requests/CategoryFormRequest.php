@@ -20,7 +20,7 @@ class CategoryFormRequest extends FormRequest
     {
         $rules = ['name' => ['string', 'required', 'max:255', 'unique:categories']];
 
-        if ($this->isMethod('UPDATE')) {
+        if ($this->isMethod('PATCH')) {
             $rules = ['name' => ['string', 'required', 'max:255', 'unique:categories,name,' . $this->category->id]];
         }
 

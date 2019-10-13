@@ -23,7 +23,7 @@
             </div> {{-- /// END sidebar --}}
 
             <div class="col-9"> {{-- Content --}}
-                <form action="" method="POST" class="card card-body shadow-sm border-0">
+                <form action="{{ route('tags.update', $category) }}" method="POST" class="card card-body shadow-sm border-0">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-info mr-1 text-secondary"></i>
                         Informatie omtrent de categorie <span class="font-weight-bold">{{ ucfirst($category->name)}}</span>
