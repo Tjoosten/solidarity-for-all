@@ -68,7 +68,7 @@ class UsersControllers extends Controller
 
         $user = DB::transaction(static function () use ($request, $user): User {
             $user = $user->create($request->all());
-            $user->syncRoles($request;
+            $user->syncRoles($request);
             $user->notify((new LoginCreated($input->all()))->delay(now()->addMinute()));
 
             return $user;
