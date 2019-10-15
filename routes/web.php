@@ -39,3 +39,5 @@ Route::patch('/categorie/{category}', [CategoryController::class, 'update'])->na
 
 // User management routes
 Route::get('/gebruikers', [UsersControllers::class, 'index'])->name('users.index');
+Route::get('/nieuwe-gebruiker', [UsersControllers::class, 'create'])->name('users.create');
+Route::post('nieuwe-gebruiker', [UsersControllers::class, 'store'])->name('users.store');
