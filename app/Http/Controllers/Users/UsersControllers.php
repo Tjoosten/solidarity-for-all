@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersFormRequest;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class UsersControllers
@@ -31,7 +37,43 @@ class UsersControllers extends Controller
      */
     public function index(User $users): Renderable
     {
-        $users = $users->paginate();
-        return view('users.index', compact('users'));
+        return view('users.index', ['users' => $users->paginate()]);
+    }
+
+    /**
+     * Method for displaying the create view for an new user.
+     *
+     * @param  Role $roles The database model class for the application permissions.
+     * @return Renderable
+     */
+    public function create(Role $roles): Renderable
+    {
+        // Duplicate pluck attribute because we assign the user
+        // permission based on name so we have an name attribute
+        // for the value and ne for display in the dropdown
+
+        return view('users.create', ['roles' => $roles->pluck('name', 'name')]);
+    }
+
+    /**
+     * Method for storing an new user in the application.
+     *
+     * @param  UsersFormRequest $request The form request class that handles all the validation.
+     * @param  User             $user    The entity form the user database model class.
+     * @return RedirectResponse
+     */
+    public function store(UsersFormRequest $request, User $user): RedirectResponse
+    {
+        $request->merge(['password' => Str::random(16]);
+
+        DB::transaction(static function () use ($request, $user): void {
+            $user = $user->create($request->all());
+            $user->assignRole($request->role);
+
+            Password::sendResetLink($user->email);
+            flash(ucfirst($user->name) . 'is toegevoegd. Alsook hebben we een wachtwoord reset mail uitgestuurd');
+        });
+
+        return redirect('users.index');
     }
 }
