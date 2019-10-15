@@ -17,3 +17,22 @@
 .form-search {
   width: 260px !important;
 }
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #f1f5f8;
+    pointer-events: none;
+    opacity: 1;
+    color: #606F7B;
+    border: 0 !important;
+    outline: none;
+}
+
+.custom-select:disabled {
+    background-color: #f1f5f8;
+    pointer-events: none;
+    opacity: 1;
+    color: #606F7B;
+    border: 0 !important;
+    outline: none;
+}

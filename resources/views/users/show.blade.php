@@ -25,13 +25,53 @@
                         <i class="fe fe-info mr-1 text-secondary"></i> Algemene information omtrent {{ ucfirst($user->name) }}
                     </h6>
 
+                    @csrf                           {{-- Form field protection --}}
+                    @method('PATCH')                {{-- HTTP method spoofing --}}
+                    @form($user)                    {{-- Bind data to the form --}}
+                    @include ('flash::message')     {{-- Flash session view partial --}}
+
+                    <fieldset @can ('update', $user) disabled @endcan>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="name">Naam <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('name', 'is-invalid')" placeholder="Naam" id="name" @input('name')>
+                                @error('name')
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label for="phone_number">Tel. nummer</label>
+                                <input type="text" id="phone_number" class="form-control" placeholder="Tel. number" id="phone_number" @input('phone_number')>
+                            </div>
+
+                            <div class="form-group col-5">
+                                <label for="email">Email adres <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control @error('email', 'is-invalid')" placeholder="E-mail adres" @input('email')' id="email">
+                                @error('email')
+                            </div>
+
+                            <div class="form-group col-7">
+                                <label for="function">Gebruikers functie <span class="text-danger">*</span></label>
+
+                                <select id="function" class="custom-select @error('role', 'is-invalid')" @input('role')>
+                                @options($roles, 'roles', old('roles'))
+                                </select>
+
+                                @error('role') {{-- flash session view partial. --}}
+                            </div>
+                        </div>
+                    </fieldset>
+
                     @can ('update', $user) {{-- The user is an webmaster so he is permitted to change the account information --}}
                         <hr class="mt-0">
 
                         <div class="form-row">
                             <div class="form-group col-12 mb-0">
                                 <button type="submit" class="btn btn-secondary">
-                                    <i class="fe fe-save mr-1"></i> Opslaan
+                                    <i class="fe fe-save mr-1"></i> opslaan
+                                </button>
+
+                                <button type="reset" class="btn btn-light">
+                                    <i class="fe fe-rotate-ccw text-danger mr-1"></i> annuleren
                                 </button>
                             </div>
                         </div>

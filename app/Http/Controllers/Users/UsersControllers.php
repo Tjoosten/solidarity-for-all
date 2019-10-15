@@ -48,7 +48,8 @@ class UsersControllers extends Controller
      */
     public function show(User $user): Renderable
     {
-        return view('users.show', compact('user'));
+        $roles = Role::pluck('name', 'name'); // See comment in the show function.
+        return view('users.show', compact('user', 'roles'));
     }
 
     /**
