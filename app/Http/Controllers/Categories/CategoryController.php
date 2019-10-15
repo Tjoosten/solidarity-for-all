@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -90,5 +91,28 @@ class CategoryController extends Controller
         });
 
         return back(); // Redirect the user back to the previous page.
+    }
+
+    /**
+     * Method for deleting a category in the application.
+     *
+     * @param  Request  $request    The request instance that contains all the request information.
+     * @param  Category $category   The database storage entity form the given category.
+     * @return Renderable|RedirectResponse
+     */
+    public function delete(Request $request, Category $category)
+    {
+        if ($request->isMethod('GET')) {
+            return view('categories.delete', compact('category'));
+        }
+
+        // Method is determined as a DELETE request so perform the delete logic.
+
+        DB::transaction(static function () use ($category): void {
+            $category->delete();
+            flash(ucfirst($category->name) . ' is verwijderd als category in de applicatie');
+        });
+
+        return redirect()->route('tags.overview');
     }
 }
