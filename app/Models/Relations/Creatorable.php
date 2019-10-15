@@ -2,8 +2,7 @@
 
 namespace App\Models\Relations;
 
-use App\User;
-use http\Exception\RuntimeException;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -33,5 +32,3 @@ trait Creatorable
         return $this;
     }
 }
-
-
