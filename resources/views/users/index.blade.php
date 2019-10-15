@@ -68,6 +68,8 @@
                                 <td>
                                     @if ($user->hasAnyRole(['admin', 'webmaster']))
                                         <span class="font-italic text-secondary">N.V.T</span>
+                                    @elseif ($user->location()->doesntExist())
+                                        <span class="font-italic text-secondary">Niet toegewezen</span>
                                     @endif
                                 </td>
 
