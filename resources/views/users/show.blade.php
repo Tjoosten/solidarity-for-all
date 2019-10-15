@@ -20,7 +20,7 @@
             </div> {{-- /// ENd sidebar Sidebar --}}
 
             <div class="col-9"> {{-- Content --}}
-                <form action="" method="POST" class="card card-body shadow-sm border-0">
+                <form action="{{ route('users.update', $user) }}" method="POST" class="card card-body shadow-sm border-0">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-info mr-1 text-secondary"></i> Algemene information omtrent {{ ucfirst($user->name) }}
                     </h6>
@@ -30,7 +30,7 @@
                     @form($user)                    {{-- Bind data to the form --}}
                     @include ('flash::message')     {{-- Flash session view partial --}}
 
-                    <fieldset @can ('update', $user) disabled @endcan>
+                    <fieldset @cannot('update', $user) disabled @endcan>
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="name">Naam <span class="text-danger">*</span></label>
@@ -53,7 +53,11 @@
                                 <label for="function">Gebruikers functie <span class="text-danger">*</span></label>
 
                                 <select id="function" class="custom-select @error('role', 'is-invalid')" @input('role')>
-                                @options($roles, 'roles', old('roles'))
+                                    @foreach ($roles as $role) {{-- Loop trough the roles --}}
+                                        <option value="{{ $role->name }}" @if ($user->hasRole($role->name)) selected @endif>
+                                            {{ ucfirst($role->name) }}
+                                        </option>
+                                    @endforeach {{-- /// END role loop --}}
                                 </select>
 
                                 @error('role') {{-- flash session view partial. --}}

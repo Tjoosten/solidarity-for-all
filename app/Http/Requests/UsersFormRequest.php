@@ -18,10 +18,24 @@ class UsersFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'       => ['required', 'string', 'max:255'],
-            'role'       => ['required', 'string', 'max:255'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ];
+        return array_merge($this->methodSpecificRules(), [
+            'name'   => ['required', 'string', 'max:255'],
+            'role'  => ['required', 'string', 'max:255'],
+        ]);
+    }
+
+    /**
+     * The method specific rules based on HTTP request method.
+     *
+     * @return array
+     */
+    private function methodSpecificRules(): array
+    {
+        if ($this->isMethod('PATCH')) {
+            $user = $this->userEntity;
+            return ['email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id]];
+        }
+
+        return [ 'email' => ['required', 'string', 'email', 'max:255', 'unique:users']];
     }
 }
