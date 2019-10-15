@@ -21,8 +21,20 @@
 
             <div class="col-9"> {{-- Content --}}
                 <form action="" method="POST" class="card card-body shadow-sm border-0">
+                    <h6 class="border-bottom border-gray pb-1 mb-3">
+                        <i class="fe fe-info mr-1 text-secondary"></i> Algemene information omtrent {{ ucfirst($user->name) }}
+                    </h6>
 
                     @can ('update', $user) {{-- The user is an webmaster so he is permitted to change the account information --}}
+                        <hr class="mt-0">
+
+                        <div class="form-row">
+                            <div class="form-group col-12 mb-0">
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fe fe-save mr-1"></i> Opslaan
+                                </button>
+                            </div>
+                        </div>
                     @endcan {{-- /// END authorization check --}}
                 </form>
             </div> {{-- /// END content --}}
