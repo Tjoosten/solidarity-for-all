@@ -17,6 +17,7 @@
     <div class="container-fluid pb-3">
         <div class="row">
             <div class="col-3"> {{-- Sidebar --}}
+                @include ('users._partials.sidenav', ['user' => $user])
             </div> {{-- /// ENd sidebar Sidebar --}}
 
             <div class="col-9"> {{-- Content --}}
