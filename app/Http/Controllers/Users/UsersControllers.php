@@ -64,7 +64,7 @@ class UsersControllers extends Controller
      */
     public function store(UsersFormRequest $request, User $user): RedirectResponse
     {
-        $request->merge(['password' => Str::random(16]);
+        $request->merge(['password' => Str::random(16)]);
 
         $user = DB::transaction(static function () use ($request, $user): User {
             $user = $user->create($request->all());
