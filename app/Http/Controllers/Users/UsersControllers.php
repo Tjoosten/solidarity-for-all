@@ -26,7 +26,8 @@ class UsersControllers extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'role:admin,webmaster']);
+        $this->middleware(['auth', 'role:admin|webmaster'])->except('update');
+        $this->middleware('can:update,userEntity')->only('update');
     }
 
     /**
@@ -48,7 +49,27 @@ class UsersControllers extends Controller
      */
     public function show(User $user): Renderable
     {
-        return view('users.show', compact('user'));
+        $roles = Role::all();
+        return view('users.show', compact('user', 'roles'));
+    }
+
+    /**
+     * Method for updating the account information from the user in the application.
+     *
+     * @param UsersFormRequest  $request     The form request class that handles the validation.
+     * @param User              $userEntity  The resource entity from the given form.
+     * @return RedirectResponse
+     */
+    public function update(UsersFormRequest $request, User $userEntity): RedirectResponse
+    {
+        DB::transaction(static function () use ($request, $userEntity): void {
+            $userEntity->update($request->except('role'));
+            $userEntity->syncRoles($request->role);
+
+            flash("De gegevens van {$userEntity->name} zijn aangepast in de applicatie.");
+        });
+
+        return redirect()->route('users.show', $userEntity);
     }
 
     /**
@@ -85,6 +106,6 @@ class UsersControllers extends Controller
             return $user;
         });
 
-        return redirect('users.show', $user);
+        return redirect()->route('users.show', $user);
     }
 }
