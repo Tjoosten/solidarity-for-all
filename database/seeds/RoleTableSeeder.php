@@ -15,7 +15,7 @@ class RoleTableSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (['admin', 'webmaster'] as $key => $value) {
+        foreach (['vrijwilliger', 'admin', 'webmaster'] as $key => $value) {
             Role::firstOrCreate(['name' => $value]);
         }
     }

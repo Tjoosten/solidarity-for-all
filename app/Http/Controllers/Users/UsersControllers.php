@@ -80,7 +80,7 @@ class UsersControllers extends Controller
 
         $user = DB::transaction(static function () use ($request, $user): User {
             $user = $user->create($request->all());
-            $user->syncRoles($request);
+            $user->syncRoles($request->role);
             $user->notify((new LoginCreated($request->all()))->delay(now()->addMinute()));
 
             return $user;
