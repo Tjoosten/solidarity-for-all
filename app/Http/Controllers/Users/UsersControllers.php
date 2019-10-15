@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersFormRequest;
+use App\Notifications\LoginCreated;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,17 @@ class UsersControllers extends Controller
     }
 
     /**
+     * Method for displaying the user information from a given user.
+     *
+     * @param  User $user The database entity from the given user in the storage.
+     * @return Renderable
+     */
+    public function show(User $user): Renderable
+    {
+        return view('users.show', compact('user'));
+    }
+
+    /**
      * Method for displaying the create view for an new user.
      *
      * @param  Role $roles The database model class for the application permissions.
@@ -68,8 +80,8 @@ class UsersControllers extends Controller
 
         $user = DB::transaction(static function () use ($request, $user): User {
             $user = $user->create($request->all());
-            $user->syncRoles($request);
-            $user->notify((new LoginCreated($input->all()))->delay(now()->addMinute()));
+            $user->syncRoles($request->role);
+            $user->notify((new LoginCreated($request->all()))->delay(now()->addMinute()));
 
             return $user;
         });
