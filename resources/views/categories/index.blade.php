@@ -25,6 +25,8 @@
     </div>
 
     <div class="container-fluid pb-3">
+        @include ('flash::message') {{-- Flash session view partial --}}
+
         <div class="card card-body shadow-sm border-0">
             <h6 class="border-bottom border-gray pb-1 mb-3">
                 <i class="fe fe-tag mr-1 text-secondary"></i> Overzicht categorieen
