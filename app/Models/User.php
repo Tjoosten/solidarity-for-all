@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
@@ -46,6 +47,20 @@ class User extends Authenticatable
     public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Data relation for the location where the user is responsible for.
+     *
+     * Locations = collection points for items like clothing and other things
+     * that can be given to refugee's or other population groups that are in need.
+     *
+     * @return HasOne
+     */
+    public function location(): HasOne
+    {
+        return $this->hasOne(Location::class, 'coordinator_id')
+            ->withDefault(['name' => config('app.name')]);
     }
 
     /**
