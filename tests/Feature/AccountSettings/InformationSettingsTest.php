@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\AccountSettings;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 /**
