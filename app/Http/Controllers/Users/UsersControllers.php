@@ -86,6 +86,6 @@ class UsersControllers extends Controller
             return $user;
         });
 
-        return redirect('users.show', $user);
+        return redirect()->route('users.show', $user);
     }
 }
