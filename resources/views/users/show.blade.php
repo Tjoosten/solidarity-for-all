@@ -7,7 +7,7 @@
             <div class="page-subtitle">Algemene informatie omtrent {{ ucfirst($user->name) }}</div>
 
             <div class="page-options d-flex">
-                <a href="{{ route('users.index') }}" class="btn btn-orange">
+                <a href="{{ route('users.index') }}" class="btn btn-shadow btn-orange">
                     <i class="fe fe-list mr-2"></i> Overzicht
                 </a>
             </div>
