@@ -66,14 +66,14 @@ class UsersControllers extends Controller
     {
         $request->merge(['password' => Str::random(16]);
 
-        DB::transaction(static function () use ($request, $user): void {
+        $user = DB::transaction(static function () use ($request, $user): User {
             $user = $user->create($request->all());
-            $user->assignRole($request->role);
+            $user->syncRoles($request;
+            $user->notify((new LoginCreated($input->all()))->delay(now()->addMinute()));
 
-            Password::sendResetLink($user->email);
-            flash(ucfirst($user->name) . 'is toegevoegd. Alsook hebben we een wachtwoord reset mail uitgestuurd');
+            return $user;
         });
 
-        return redirect('users.index');
+        return redirect('users.show', $user);
     }
 }
