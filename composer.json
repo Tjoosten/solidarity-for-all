@@ -20,8 +20,8 @@
         "watson/active": "^4.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
-        "fruitcake/laravel-telescope-toolbar": "^1.1",
         "fzaninotto/faker": "^1.4",
         "laravel/telescope": "^2.1",
         "laravel/ui": "^1.0",

@@ -87,11 +87,9 @@
                 <div class="container-fluid">
                     <span class="copyright">&copy; {{ date('Y') }}, {{ config('app.name') }}</span>
 
-                    @if (config('app.debug') && ! app()->environment('local'))
-                        <div class="float-right">
-                            <span class="copyright">v1.0.0</span>
-                        </div>
-                    @endif
+                    <div class="float-right">
+                        <span class="copyright">v1.0.0</span>
+                    </div>
                 </div>
             </footer>
         </div>
