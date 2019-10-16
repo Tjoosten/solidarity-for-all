@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\DeactivationController;
 use App\Http\Controllers\Profile\InformationController;
 use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\Users\UsersControllers;
@@ -43,3 +44,8 @@ Route::get('/gebruiker/{user}', [UsersControllers::class, 'show'])->name('users.
 Route::patch('/gebruikers/{userEntity}', [UsersControllers::class, 'update'])->name('users.update');
 Route::get('/nieuwe-gebruiker', [UsersControllers::class, 'create'])->name('users.create');
 Route::post('nieuwe-gebruiker', [UsersControllers::class, 'store'])->name('users.store');
+
+// User state routes
+Route::get('/gedeactiveers', [DeactivationController::class, 'show'])->name('user.blocked');
+Route::get('/deactiveerd/{user}', [DeactivationController::class, 'index'])->name('users.deactivate');
+
