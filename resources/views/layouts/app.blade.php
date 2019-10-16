@@ -25,7 +25,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <img src="{{ asset('img/logo.jpg') }}" width="35" height="35" class="mr-3 rounded d-inline-block align-top" alt="{{ config('app.name', 'Laravel') }}">
                 <a class="navbar-brand mr-auto mr-lg-0" href="#">
-                    {{ config('app.name', 'Laravel') }} {{ $currentUser->cannot('on-kiosk', $currentUser) ? '' : ' - Kiosk' }}
+                    {{ config('app.name', 'Laravel') }}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,9 +87,11 @@
                 <div class="container-fluid">
                     <span class="copyright">&copy; {{ date('Y') }}, {{ config('app.name') }}</span>
 
-                    <div class="float-right">
-                        <span class="copyright">v1.0.0</span>
-                    </div>
+                    @if (config('app.debug') && ! app()->environment('local'))
+                        <div class="float-right">
+                            <span class="copyright">v1.0.0</span>
+                        </div>
+                    @endif
                 </div>
             </footer>
         </div>
