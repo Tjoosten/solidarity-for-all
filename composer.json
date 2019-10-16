@@ -11,6 +11,7 @@
         "php": "^7.2",
         "actb/laravel-form-helpers": "^1.5",
         "actb/laravel-validation-rules": "^1.2",
+        "cybercog/laravel-ban": "^4.2",
         "fideloper/proxy": "^4.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "^6.0",
