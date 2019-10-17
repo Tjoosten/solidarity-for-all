@@ -28,4 +28,14 @@ class Location extends Model
     {
         return $this->belongsTo(User::class, 'coordinator_id');
     }
+
+    /**
+     * Attribute setter to combne various data pieces to the full address.
+     *
+     * @return string
+     */
+    public function getFullAddressAtrribute(): string
+    {
+        return "{$this->address}, {$this->postal} {$this->city}";
+    }
 }
