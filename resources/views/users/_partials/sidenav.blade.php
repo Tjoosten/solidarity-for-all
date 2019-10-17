@@ -8,7 +8,7 @@
             <i class="fe fe-lock text-muted mr-2"></i> Deactiveer gebuiker
         </a>
     @elseif ($currentUser->can('activate', $user))
-        <a href="" class="list-group-item {{ active('users.activate') }} list-group-item-action">
+        <a href="{{ route('users.activate', $user) }}" class="list-group-item {{ active('users.activate') }} list-group-item-action">
             <i class="fe fe-unlock text-muted mr-2"></i> Deactivering opheffen
         </a>
     @endif{{-- /// END authorization check --}}

@@ -49,4 +49,5 @@ Route::post('nieuwe-gebruiker', [UsersControllers::class, 'store'])->name('users
 Route::get('/gedeactiveerd', [DeactivationController::class, 'show'])->name('user.blocked');
 Route::get('/deactiveer/{user}', [DeactivationController::class, 'index'])->name('users.deactivate');
 Route::post('/deactiveer/{user}', [DeactivationController::class, 'store'])->name('users.deactivate');
+Route::get('/activeer/{user}', [DeactivationController::class, 'destroy'])->name('users.activate');
 

@@ -90,17 +90,26 @@ class DeactivationController extends Controller
             // TODO: *can wait*: Implement email notification.
         });
 
-        return route()->redirect('users.show', $user);
+        return redirect()->route('users.show', $user);
     }
 
     /**
      * Method for deleting the account deactivation in the application.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException <- Tiggers when the user is not permitted.
      *
      * @param  User $user   The resource entity from the given user.
      * @return RedirectResponse
      */
     public function destroy(User $user): RedirectResponse
     {
-        //
+        $this->authorize('activate', $user);
+
+        DB::transaction(static function () use ($user): void {
+            $user->unban();
+            flash('De gebruiker is terug geactiveerd in de applicatie.', 'success');
+        });
+
+        return redirect()->route('users.show', $user);
     }
 }
