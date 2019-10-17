@@ -21,7 +21,7 @@
             </div> {{-- /// END sidebar --}}
 
             <div class="col-9"> {{-- Sidebar --}}
-                <form action="" method="POST" class="card card-body shadow-sm border-0">
+                <form action="{{ route('users.deactivate', $user) }}" method="POST" class="card card-body shadow-sm border-0">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-lock mr-1 text-secondary"></i> {{ ucfirst($user->name) }} deactiveren in de applicatie
                     </h6>
@@ -43,7 +43,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <textarea placeholder="Beschrijving van de rede voor de blokkering" class="form-control @error('reden', 'is-invalid')" @input('reden') rows="5">{{ old('reden') }}</textarea>
+                            <textarea placeholder="Beschrijving van de rede voor de deactivatie" class="form-control @error('reden', 'is-invalid')" @input('reden') rows="5">{{ old('reden') }}</textarea>
                             @error('reden') {{-- Validation error view partial --}}
                         </div>
                     </div>

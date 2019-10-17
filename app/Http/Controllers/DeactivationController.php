@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeactivateFormRequest;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DeactivationController
@@ -70,13 +72,35 @@ class DeactivationController extends Controller
         return abort(Response::HTTP_NOT_FOUND); // HTTP/2 404 - NOT FOUND.
     }
 
-    public function store(): RedirectResponse
+    /**
+     * Method for storing the deactivation in the application.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException <- Triggers when the user is not permitted.
+     *
+     * @param DeactivateFormRequest $request The request class that handles the validation logic.
+     * @param User $user The resource entity from the given user.
+     * @return RedirectResponse
+     */
+    public function store(DeactivateFormRequest $request, User $user): RedirectResponse
     {
+        $this->authorize('deactivate', $user);
 
+        DB::transaction(static function () use ($request, $user): void {
+            $user->ban(['comment' => $request->reden]);
+            // TODO: *can wait*: Implement email notification.
+        });
+
+        return route()->redirect('users.show', $user);
     }
 
+    /**
+     * Method for deleting the account deactivation in the application.
+     *
+     * @param  User $user   The resource entity from the given user.
+     * @return RedirectResponse
+     */
     public function destroy(User $user): RedirectResponse
     {
-
+        //
     }
 }

@@ -46,6 +46,7 @@ Route::get('/nieuwe-gebruiker', [UsersControllers::class, 'create'])->name('user
 Route::post('nieuwe-gebruiker', [UsersControllers::class, 'store'])->name('users.store');
 
 // User state routes
-Route::get('/gedeactiveers', [DeactivationController::class, 'show'])->name('user.blocked');
-Route::get('/deactiveerd/{user}', [DeactivationController::class, 'index'])->name('users.deactivate');
+Route::get('/gedeactiveerd', [DeactivationController::class, 'show'])->name('user.blocked');
+Route::get('/deactiveer/{user}', [DeactivationController::class, 'index'])->name('users.deactivate');
+Route::post('/deactiveer/{user}', [DeactivationController::class, 'store'])->name('users.deactivate');
 

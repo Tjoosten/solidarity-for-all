@@ -31,6 +31,12 @@
                     @form($user)                    {{-- Bind data to the form --}}
                     @include ('flash::message')     {{-- Flash session view partial --}}
 
+                    @if ($user->isBanned())
+                        <div class="alert alert-danger border-0 alert-important" role="alert">
+                            <i class="fe fe-alert-triangle mr-1"></i> Deze gebruiker is tijdelijk gedeactiveerd!
+                        </div>
+                    @endif
+
                     <fieldset @cannot('update', $user) disabled @endcan>
                         <div class="form-row">
                             <div class="form-group col-6">
