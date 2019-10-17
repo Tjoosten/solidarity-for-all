@@ -27,7 +27,7 @@ class InformationController extends Controller
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->middleware('auth');
+        $this->middleware(['auth', 'forbid-banned-user']);
     }
 
     /**

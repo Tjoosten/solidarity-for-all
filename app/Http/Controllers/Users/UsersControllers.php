@@ -26,7 +26,7 @@ class UsersControllers extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'role:admin|webmaster'])->except('update');
+        $this->middleware(['auth', 'role:admin|webmaster', 'forbid-banned-user'])->except('update');
         $this->middleware('can:update,userEntity')->only('update');
     }
 

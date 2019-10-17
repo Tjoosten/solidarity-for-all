@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * Class HomeController
+ *
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
@@ -11,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'forbid-banned-user']);
     }
 
     /**
