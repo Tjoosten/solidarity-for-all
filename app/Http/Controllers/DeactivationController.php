@@ -32,7 +32,7 @@ class DeactivationController extends Controller
     public function __construct(Guard $auth)
     {
         $this->middleware('auth');
-        $this->middleware('forbid-banned-user')->except('show');
+        $this->middleware(['forbid-banned-user', 'password.confirm'])->except('show');
 
         $this->auth = $auth;
     }
