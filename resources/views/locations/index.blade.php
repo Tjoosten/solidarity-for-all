@@ -7,7 +7,7 @@
             <div class="page-subtitle">Overzicht</div>
 
             <div class="page-options d-flex">
-                <a href="" class="btn btn-orange shadow-sm">
+                <a href="{{ route('locations.create') }}" class="btn btn-orange shadow-sm">
                     <i class="fe fe-plus"></i>
                 </a>
 

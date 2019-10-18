@@ -54,3 +54,4 @@ Route::get('/activeer/{user}', [DeactivationController::class, 'destroy'])->name
 
 // Location routes
 Route::get('/inzamelpunten', [LocationController::class, 'index'])->name('locations.index');
+Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
