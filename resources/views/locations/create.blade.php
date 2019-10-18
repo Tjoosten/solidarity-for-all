@@ -15,7 +15,7 @@
     </div>
 
     <div class="container-fluid pb-3">
-        <form  action="" method="POST" class="card card-body border-0 shadow-sm">
+        <form  action="{{ route('locations.store') }}" method="POST" class="card card-body border-0 shadow-sm">
             <h6 class="border-bottom border-gray pb-1 mb-3">
                 <i class="fe fe-plus mr-1 text-secondary"></i> Inzamelpunt toevoegen
             </h6>
@@ -82,7 +82,7 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label for="extra" class="sr-only">Extra informatie</label>
-                            <textarea id="extra" rows="2" class="form-control" placeholder="Extra informatie">{{ old('extra') }}</textarea>
+                            <textarea id="extra" rows="2" class="form-control" placeholder="Extra informatie" @input('extra')>{{ old('extra') }}</textarea>
                         </div>
                     </div>
                 </div>

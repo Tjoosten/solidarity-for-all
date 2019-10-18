@@ -23,6 +23,8 @@
     </div>
 
     <div class="container-fluid pb-3">
+        @include ('flash::message') {{-- Flash session view partial --}}
+
         <div class="card card-body shadow-sm border-0">
             <h6 class="border-bottom border-gray pb-1 mb-3">
                 <i class="fe fe-map-pin mr-1 text-secondary"></i> Overzicht van inzamelpunten
@@ -34,7 +36,8 @@
                         <tr>
                             <th class="border-top-0" scope="col">Coordinator</th>
                             <th class="border-top-0" scope="col">Naam</th>
-                            <th class="border-top-0" colspan="2" scope="col">Adres</th>
+                            <th class="border-top-0" scope="col">Adres</th>
+                            <th class="border-top-0" scope="col" colspan="2">Aantal items</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +46,7 @@
                                 <td class="text-secondary font-weight-bold">{{ $location->coordinator->name }}</td>
                                 <td>{{ $location->name }}</td>
                                 <td>{{ $location->full_address }}</td>
+                                <td>{{ $location->items_count }} items</td>
 
                                 <td> {{-- Options --}}
                                     <span class="float-right">
@@ -50,7 +54,7 @@
                                             <i class="fe fe-eye"></i>
                                         </a>
 
-                                        <a href="" class="text-danger text-decoration-none mr-1">
+                                        <a href="" class="text-danger text-decoration-none ml-1">
                                             <i class="fe fe-trash-2"></i>
                                         </a>
                                     </span>

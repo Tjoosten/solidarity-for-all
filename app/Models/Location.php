@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Location
@@ -30,11 +31,21 @@ class Location extends Model
     }
 
     /**
+     * Data relation for all the stuff that is attached to the collection point. (Location)
+     *
+     * @return HasMany
+     */
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    /**
      * Attribute setter to combne various data pieces to the full address.
      *
      * @return string
      */
-    public function getFullAddressAtrribute(): string
+    public function getFullAddressAttribute(): string
     {
         return "{$this->address}, {$this->postal} {$this->city}";
     }

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Locations;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationFormRequest;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class LocationController
@@ -32,7 +35,7 @@ class LocationController extends Controller
      */
     public function index(Location $locations): Renderable
     {
-        return view('locations.index', ['locations' => $locations->paginate()]);
+        return view('locations.index', ['locations' => $locations->withCount('items')->paginate()]);
     }
 
     /**
@@ -45,5 +48,26 @@ class LocationController extends Controller
     {
         $users = $users->role('vrijwilliger')->doesnthave('location')->pluck('name', 'id');
         return view('locations.create', compact('users'));
+    }
+
+    /**
+     * Method for storing an new collection point (location) in the application.
+     *
+     * @param  LocationFormRequest  $request    The form request class that handles all the validation.
+     * @param  Location             $location   The database model for the collection points.
+     * @return RedirectResponse
+     */
+    public function store(LocationFormRequest $request, Location $location): RedirectResponse
+    {
+        DB::transaction(static function () use ($request, $location): void {
+            $location = new $location($request->except('coordinator'));
+
+            $user = User::findOrFail($request->coordinator);
+            $user->location()->save($location);
+
+            flash('Het inzamelpunt is opgeslagen in de applicatie.')->success();
+        });
+
+        return redirect()->route('locations.index');
     }
 }

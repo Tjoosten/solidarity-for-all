@@ -26,6 +26,7 @@ class CreateLocationsTable extends Migration
             $table->string('address');
             $table->string('postal');
             $table->string('city');
+            $table->text('extra')->nullable();
             $table->timestamps();
 
             // Foreign keys and indexes.

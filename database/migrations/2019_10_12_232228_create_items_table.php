@@ -16,14 +16,18 @@ class CreateItemsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('items', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('location_id');
             $table->timestamps();
 
             // Foreign keys
             $table->foreign('category_id')->references('id')
                 ->on('categories')->onDelete('set null');
+
+            $table->foreign('location_id')->references('id')
+                ->on('locations')->onDelete('cascade');
         });
     }
 
