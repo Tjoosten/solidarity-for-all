@@ -24,7 +24,12 @@ class LocationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'forbid-banned-user', 'role:admin|webmaster']);
+        // The update method is excluded because the volunteer that a the coordinator.
+        // Form the collection is also needed to update the information. So
+        // It is better to pass a authorization policy to the controller function.
+
+        $this->middleware(['auth', 'forbid-banned-user', 'role:admin|webmaster'])
+            ->except('update');
     }
 
     /**
@@ -36,6 +41,18 @@ class LocationController extends Controller
     public function index(Location $locations): Renderable
     {
         return view('locations.index', ['locations' => $locations->withCount('items')->paginate()]);
+    }
+
+    /**
+     * Display the given collection point in the application.
+     *
+     * @param  Location $location The resource entity from the given collection point.
+     * @return Renderable
+     */
+    public function show(Location $location): Renderable
+    {
+        $users = User::role('vrijwilliger')->doesntHave('location')->pluck('name', 'id');
+        return view('locations.show', compact('location', 'users'));
     }
 
     /**

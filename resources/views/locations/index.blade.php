@@ -50,7 +50,7 @@
 
                                 <td> {{-- Options --}}
                                     <span class="float-right">
-                                        <a href="" class="text-secondary text-decoration-none">
+                                        <a href="{{ route('locations.show', $location) }}" class="text-secondary text-decoration-none">
                                             <i class="fe fe-eye"></i>
                                         </a>
 

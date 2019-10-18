@@ -14,7 +14,6 @@
         </div>
     </div>
 
-    <div class="container-fluid pb-3">
         <form  action="{{ route('locations.store') }}" method="POST" class="card card-body border-0 shadow-sm">
             <h6 class="border-bottom border-gray pb-1 mb-3">
                 <i class="fe fe-plus mr-1 text-secondary"></i> Inzamelpunt toevoegen
@@ -103,6 +102,5 @@
                    </span>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
 @endsection
