@@ -18,8 +18,8 @@ class LocationPolicy
     /**
      * Determine whether the user can update the location.
      *
-     * @param  User      $user
-     * @param  Location  $location
+     * @param  User      $user      The resource entity from the authenticated user.
+     * @param  Location  $location  The resource entity for the given location.
      * @return bool
      */
     public function update(User $user, Location $location): bool
@@ -31,8 +31,8 @@ class LocationPolicy
     /**
      * Determine whether the user can update the coordinator or not.
      *
-     * @param  User     $user
-     * @param  Location $location
+     * @param  User     $user       The resource entity from the authenticated user.
+     * @param  Location $location   The resource entity for the given location.
      * @return bool
      */
     public function updateCoordinator(User $user, Location $location): bool

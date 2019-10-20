@@ -54,7 +54,7 @@
                                             <i class="fe fe-eye"></i>
                                         </a>
 
-                                        <a href="" class="text-danger text-decoration-none ml-1">
+                                        <a href="{{ route('locations.destroy', $location) }}" class="text-danger text-decoration-none ml-1">
                                             <i class="fe fe-trash-2"></i>
                                         </a>
                                     </span>

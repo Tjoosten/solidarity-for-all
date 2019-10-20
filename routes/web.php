@@ -58,3 +58,4 @@ Route::get('/inzamelpunt/{location}', [LocationController::class, 'show'])->name
 Route::patch('/inzamelpunt/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
 Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('locations.store');
+Route::match(['delete', 'get'], 'inzamelpunt/verwijder/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');

@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -27,11 +28,10 @@ class LocationController extends Controller
         // The update method is excluded because the volunteer that a the coordinator.
         // Form the collection is also needed to update the information. So
         // It is better to pass a authorization policy to the controller function.
+
         $this->middleware('can:update,location')->only('update');
-
-
-        $this->middleware(['auth', 'forbid-banned-user', 'role:admin|webmaster'])
-            ->except('update');
+        $this->middleware('password.confirm')->only('destroy');
+        $this->middleware(['auth', 'forbid-banned-user', 'role:admin|webmaster'])->except('update');
     }
 
     /**
@@ -93,8 +93,6 @@ class LocationController extends Controller
     /**
      * Method for updating the collection point (location) in the application.
      *
-     * @todo Implement update-coordinator policy
-     *
      * @param  LocationFormRequest $request     The request class that handles the validation
      * @param  Location            $location    The resource entity from the given collection point (location)
      * @return RedirectResponse
@@ -111,5 +109,27 @@ class LocationController extends Controller
         });
 
         return redirect()->route('locations.show', $location);
+    }
+
+    /**
+     * Method for deleting an collection point (location) in the application.
+     *
+     * @throws \Exception <- Triggers when an error occurs.
+     *
+     * @param Request $request The request instance that holds all the request information.
+     * @param Location $location The resource entity from the given location.
+     * @return Renderable|RedirectResponse
+     */
+    public function destroy(Request $request, Location $location)
+    {
+        if ($request->isMethod('GET')) {
+            return view('locations.delete', compact('location'));
+        }
+
+        // Request is identified as DELETE. So delete the actual location.
+        $location->delete();
+        flash($location->name . ' is verwijder als inzamelpunt in de applicatie');
+
+        return redirect()->route('locations.index');
     }
 }
