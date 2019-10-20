@@ -49,7 +49,7 @@ class InformationController extends Controller
     public function update(InformationFormRequest $request): RedirectResponse
     {
         if ($this->auth->user()->update($request->all())) {
-            flash('Uw algemene gegevens zijn et succes aangepast.');
+            flash('Uw algemene gegevens zijn met succes aangepast.');
         }
 
         return redirect()->route('profile.settings.info');

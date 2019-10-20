@@ -55,5 +55,6 @@ Route::get('/activeer/{user}', [DeactivationController::class, 'destroy'])->name
 // Location routes
 Route::get('/inzamelpunten', [LocationController::class, 'index'])->name('locations.index');
 Route::get('/inzamelpunt/{location}', [LocationController::class, 'show'])->name('locations.show');
+Route::patch('/inzamelpunt/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
 Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('locations.store');

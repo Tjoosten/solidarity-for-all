@@ -23,7 +23,7 @@
             </div> {{-- /// END sidebar --}}
 
             <div class="col-md-9"> {{-- content --}}
-                <form action="" method="POST" class="card card-body border-0 shadow-sm">
+                <form action="{{ route('locations.update', $location) }}" method="POST" class="card card-body border-0 shadow-sm">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-info mr-1 text-secondary"></i>
                         Algemene information omtrent inzamel punt <span class="font-weight-bold">{{ ucfirst($location->name) }}</span>
@@ -50,7 +50,7 @@
                                 <div class="form-group col-5">
                                     <label for="coordinator">Coordinator <span class="text-danger">*</span></label>
 
-                                    <select class="custom-select @error('coordinator', 'is-invalid')" id="coordinator" @input('coordinator')>
+                                    <select class="custom-select @error('coordinator', 'is-invalid')" id="coordinator" name="coordinator">
                                         <option value="">-- selecteer de coordinator --</option>
                                         <option selected value="{{ $location->coordinator->id }}">{{ $location->coordinator->name }}</option>
                                         @options($users, 'coordinator', old('coordinator'))

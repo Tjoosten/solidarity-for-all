@@ -27,6 +27,8 @@ class LocationController extends Controller
         // The update method is excluded because the volunteer that a the coordinator.
         // Form the collection is also needed to update the information. So
         // It is better to pass a authorization policy to the controller function.
+        $this->middleware('can:update,location')->only('update');
+
 
         $this->middleware(['auth', 'forbid-banned-user', 'role:admin|webmaster'])
             ->except('update');
@@ -86,5 +88,28 @@ class LocationController extends Controller
         });
 
         return redirect()->route('locations.index');
+    }
+
+    /**
+     * Method for updating the collection point (location) in the application.
+     *
+     * @todo Implement update-coordinator policy
+     *
+     * @param  LocationFormRequest $request     The request class that handles the validation
+     * @param  Location            $location    The resource entity from the given collection point (location)
+     * @return RedirectResponse
+     */
+    public function update(LocationFormRequest $request, Location $location): RedirectResponse
+    {
+        DB::transaction(static function () use ($request, $location): void {
+            if ($request->user()->can('update-coordinator', $location)) {
+                $location->coordinator()->associate($request->coordinator)->save();
+            }
+
+            $location->update($request->except('coordinator'));
+            flash('De gegevens omtrent het inzamelpunt zijn aangepast.');
+        });
+
+        return redirect()->route('locations.show', $location);
     }
 }
