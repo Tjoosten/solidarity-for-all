@@ -68,8 +68,14 @@
                                 <td>
                                     @if ($user->hasAnyRole(['admin', 'webmaster']))
                                         <span class="font-italic text-secondary">N.V.T</span>
-                                    @elseif ($user->location()->doesntExist())
+                                    @endif
+
+                                    @if ($user->location()->doesntExist())
                                         <span class="font-italic text-secondary">Niet toegewezen</span>
+                                    @elseif ($user->location()->exists())
+                                        <a href="{{ route('locations.show', $user->location) }}" class="text-decoration-none">
+                                            {{ $user->location->name }}
+                                        </a>
                                     @endif
                                 </td>
 

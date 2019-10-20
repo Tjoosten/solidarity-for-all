@@ -21,11 +21,12 @@ class CreateLocationsTable extends Migration
 
         Schema::create('locations', static function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('coordinator_id');
+            $table->unsignedBigInteger('coordinator_id')->nullable();
             $table->string('name');
             $table->string('address');
             $table->string('postal');
             $table->string('city');
+            $table->text('extra')->nullable();
             $table->timestamps();
 
             // Foreign keys and indexes.

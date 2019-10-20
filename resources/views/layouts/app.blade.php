@@ -64,7 +64,7 @@
                             <i class="fe fe-users mr-1 fe-navbar"></i> Gebruikers
                         </a>
 
-                        <a href="" class="nav-link">
+                        <a href="{{ route('locations.index') }}" class="{{ active('locations.*') }} nav-link">
                             <i class="fe fe-map-pin mr-1 fe-navbar"></i> Locaties
                         </a>
 

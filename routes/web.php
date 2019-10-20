@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\DeactivationController;
+use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Profile\InformationController;
 use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\Users\UsersControllers;
@@ -51,3 +52,10 @@ Route::get('/deactiveer/{user}', [DeactivationController::class, 'index'])->name
 Route::post('/deactiveer/{user}', [DeactivationController::class, 'store'])->name('users.deactivate');
 Route::get('/activeer/{user}', [DeactivationController::class, 'destroy'])->name('users.activate');
 
+// Location routes
+Route::get('/inzamelpunten', [LocationController::class, 'index'])->name('locations.index');
+Route::get('/inzamelpunt/{location}', [LocationController::class, 'show'])->name('locations.show');
+Route::patch('/inzamelpunt/{location}', [LocationController::class, 'update'])->name('locations.update');
+Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
+Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('locations.store');
+Route::match(['delete', 'get'], 'inzamelpunt/verwijder/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
