@@ -66,12 +66,12 @@
                                 </td>
 
                                 <td>
-                                    @if ($user->hasAnyRole(['admin', 'webmaster']))
-                                        <span class="font-italic text-secondary">N.V.T</span>
-                                    @endif
-
                                     @if ($user->location()->doesntExist())
-                                        <span class="font-italic text-secondary">Niet toegewezen</span>
+                                        @if ($user->hasAnyRole(['admin', 'webmaster']))
+                                            <span class="font-italic text-secondary">N.V.T</span>
+                                        @else {{-- The givzn user is a normal user. --}}
+                                            <span class="font-italic text-secondary">Niet toegewezen</span>
+                                        @endif
                                     @elseif ($user->location()->exists())
                                         <a href="{{ route('locations.show', $user->location) }}" class="text-decoration-none">
                                             {{ $user->location->name }}
