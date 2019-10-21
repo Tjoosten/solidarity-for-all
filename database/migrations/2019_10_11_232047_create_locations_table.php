@@ -30,7 +30,7 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
 
             // Foreign keys and indexes.
-            $table->foreign('coordinator_id')->references('id')->on('users');
+            $table->foreign('coordinator_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
