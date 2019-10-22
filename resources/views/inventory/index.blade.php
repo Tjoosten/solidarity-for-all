@@ -7,6 +7,10 @@
             <div class="page-subtitle">Overzicht van alle hulpgoederen</div>
 
             <div class="page-options d-flex">
+                <a href="{{ route('inventory.admin.create') }}" class="btn btn-orange shadow-sm">
+                    <i class="fe fe-plus"></i>
+                </a>
+
                 <form method="GET" action="" class="border-0 shadow-sm form-search form-inline ml-2">
                     <div class="form-group has-search">
                         <label for="search" class="sr-only">Zoek goederen</label>
@@ -29,7 +33,7 @@
                     <thead>
                         <tr>
                             <th class="border-top-0" scope="col">Inzamelpunt</th>
-                            <th class="border-top-0" scope="col">Category</th>
+                            <th class="border-top-0" scope="col">Categorie</th>
                             <th class="border-top-0" scope="col">Item code</th>
                             <th class="border-top-0" scope="col">Naam</th>
                             <th class="border-top-0" colspan="2" scope="col">Aantal</th> {{-- Colspan="Z" is needed for the functions --}}

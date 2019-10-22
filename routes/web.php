@@ -62,4 +62,6 @@ Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('l
 Route::match(['delete', 'get'], 'inzamelpunt/verwijder/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
 
 // Inventory routes
-Route::get('inventaris', [AdminController::class, 'index'])->name('inventory.admin.index');
+Route::get('/inventaris', [AdminController::class, 'index'])->name('inventory.admin.index');
+Route::get('/nieuw-item', [AdminController::class, 'create'])->name('inventory.admin.create');
+Route::post('/nieuw-item', [AdminController::class, 'store'])->name('inventory.admin.store');
