@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\ItemFormRequest;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Location;
@@ -51,8 +52,15 @@ class AdminController extends Controller
         return view('inventory.create', compact('locations', 'categories'));
     }
 
-    public function store(): RedirectResponse
+    /**
+     * Method for storing a new item in the application.
+     *
+     * @param  ItemFormRequest   $request The request class that handles all the validation logic.
+     * @param  Item              $item    The database model for the inventory items.
+     * @return RedirectResponse
+     */
+    public function store(ItemFormRequest $request, Item $item): RedirectResponse
     {
-
+        dd($request->all());
     }
 }

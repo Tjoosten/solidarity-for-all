@@ -18,8 +18,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', static function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('item_code');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('location_id');
+            $table->string('name');
+            $table->integer('quantity');
+            $table->text('extra_information')->nullable();
             $table->timestamps();
 
             // Foreign keys
