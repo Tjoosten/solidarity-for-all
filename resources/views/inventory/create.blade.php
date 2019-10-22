@@ -22,7 +22,7 @@
 
             @csrf {{-- Form field protection --}}
 
-            <div class="row mr-1">
+            <div class="row mt-1">
                 <div class="col-3">
                     <h5>Algemene informatie</h5>
                 </div>
