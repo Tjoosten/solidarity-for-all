@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\Location;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AdminController
@@ -61,6 +62,14 @@ class AdminController extends Controller
      */
     public function store(ItemFormRequest $request, Item $item): RedirectResponse
     {
-        dd($request->all());
+        DB::transaction(static function () use ($request, $item) {
+            $item = $item->store($request->except(['category', 'location']));
+            $item->location()->associate($request->location)->save();
+            $item->category()->associate($request->category)->save();
+
+            flash(ucfirst($item->name) . ' is toegevoegd in de applicatie');
+        });
+
+        return redirect()->route('inventory.admin.index');
     }
 }
