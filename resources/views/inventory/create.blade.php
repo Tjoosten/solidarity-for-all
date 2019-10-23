@@ -37,7 +37,7 @@
 
                         <div class="form-group col-4">
                             <label for="amount">Aantal <span class="text-danger">*</span></label>
-                            <input type="text" id="quantity" class="form-control" @error('quantity', 'is-invalid') placeholder="Aantal" @input('quantity')>
+                            <input type="text" id="quantity" class="form-control @error('quantity', 'is-invalid')" placeholder="Aantal" @input('quantity')>
                             @error('quantity')
                         </div>
 

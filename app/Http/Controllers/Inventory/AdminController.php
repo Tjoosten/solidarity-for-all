@@ -58,8 +58,6 @@ class AdminController extends Controller
      *
      * @throws \Exception <- When an unexpected error occurs
      *
-     * @todo Complete validation
-     *
      * @param ItemFormRequest $request The request class that handles all the validation logic.
      * @param Item $item The database model for the inventory items.
      * @return RedirectResponse

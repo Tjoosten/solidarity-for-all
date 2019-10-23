@@ -19,7 +19,10 @@ class ItemFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'      => ['required', 'string', 'max:255'],
+            'quantity'  => ['required', 'integer'],
+            'location'  => ['required', 'integer'],
+            'category'  => ['required', 'integer'],
         ];
     }
 }
