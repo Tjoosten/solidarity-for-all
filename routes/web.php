@@ -45,6 +45,7 @@ Route::get('/gebruiker/{user}', [UsersControllers::class, 'show'])->name('users.
 Route::patch('/gebruikers/{userEntity}', [UsersControllers::class, 'update'])->name('users.update');
 Route::get('/nieuwe-gebruiker', [UsersControllers::class, 'create'])->name('users.create');
 Route::post('nieuwe-gebruiker', [UsersControllers::class, 'store'])->name('users.store');
+Route::match(['get', 'delete'], '/gebruiker/{user}/verwijderen', [UsersControllers::class, 'destroy'])->name('users.destroy');
 
 // User state routes
 Route::get('/gedeactiveerd', [DeactivationController::class, 'show'])->name('user.blocked');

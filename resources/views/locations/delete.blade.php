@@ -32,6 +32,7 @@
                     @method ('DELETE')  {{-- HTTP method spoofing --}}
 
                     <p class="text-danger card-text">
+                        <i class="fe fe-alert-triangle mr-1"></i>
                         U staat om een inzamelpunt te verwijderen in de applicatie.
                     </p>
 
