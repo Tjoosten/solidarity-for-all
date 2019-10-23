@@ -16,6 +16,18 @@ class ItemPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user can view the item information or not.
+     *
+     * @param  User $user   The resource entity from the authenticated user.
+     * @param  Item $item   The given resource entity from the item.
+     * @return bool
+     */
+    public function show(User $user, Item $item): bool
+    {
+        return $user->hasAnyRole(['admin', 'webmaster']) || $user->location->is($item->location());
+    }
+
+    /**
      * Determine whether the user can check-in new items or not.
      *
      * @param  User $user   The resource entity from the authenticated user.

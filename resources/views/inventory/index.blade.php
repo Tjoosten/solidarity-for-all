@@ -65,12 +65,12 @@
                                         @endcan
 
                                         @can ('checkin', $item) {{-- User is permitted to check-in items --}}
-                                            <a href="" class="text-success text-decoration-none ml-1">
+                                            <a href="{{ route('inventory.checkin', $item) }}" class="text-success text-decoration-none ml-1">
                                                 <i class="fe fe-plus-square"></i>
                                             </a>
                                         @endcan
 
-                                        <a href="" class="text-muted text-decoration-none ml-3">
+                                        <a href="{{ route('inventory.show', $item) }}" class="text-muted text-decoration-none ml-3">
                                             <i class="fe fe-eye"></i>
                                         </a>
 
