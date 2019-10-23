@@ -53,3 +53,11 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+// 3th party javascript.
+$(document).ready(function() {
+    $('div.alert').not('.alert-important').delay(4200).fadeOut(350, function() {
+        // Auto hide flash messages where the class .alert-important is not found.
+        $(this).alert('close');
+    });
+});

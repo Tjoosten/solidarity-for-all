@@ -8,6 +8,7 @@ use App\Notifications\LoginCreated;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
@@ -28,6 +29,7 @@ class UsersControllers extends Controller
     {
         $this->middleware(['auth', 'role:admin|webmaster', 'forbid-banned-user'])->except('update');
         $this->middleware('can:update,userEntity')->only('update');
+        $this->middleware('password.confirm')->only('destroy');
     }
 
     /**
@@ -107,5 +109,32 @@ class UsersControllers extends Controller
         });
 
         return redirect()->route('users.show', $user);
+    }
+
+    /**
+     * Method for deleting a user in the application.
+     *
+     * @param  Request  $request    The request instance that holds all the request information.
+     * @param  User     $user       The entity from the given user.
+     * @return Renderable|RedirectResponse
+     */
+    public function destroy(Request $request, User $user)
+    {
+        if ($request->isMethod('GET')) {
+            return view('users.destroy', compact('user'));
+        }
+
+        if (auth()->user()->is($user)) {
+            flash('Je kunt je eigen niet verwijderen momenteel.', 'warning');
+            return back(); // The user can't delete himself for now.
+        }
+
+        // Request is identified as HTTP/2 DELETE. So move on with the actual delete logic.
+        DB::transaction(static function () use ($request, $user): void {
+            $user->delete();
+            flash(ucfirst($user->name) . ' is verwijderd als gebruiker in de applicatie.');
+        });
+
+        return redirect()->route('users.index');
     }
 }
