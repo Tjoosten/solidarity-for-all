@@ -56,14 +56,20 @@ class AdminController extends Controller
     /**
      * Method for storing a new item in the application.
      *
-     * @param  ItemFormRequest   $request The request class that handles all the validation logic.
-     * @param  Item              $item    The database model for the inventory items.
+     * @throws \Exception <- When an unexpected error occurs
+     *
+     * @todo Complete validation
+     *
+     * @param ItemFormRequest $request The request class that handles all the validation logic.
+     * @param Item $item The database model for the inventory items.
      * @return RedirectResponse
      */
     public function store(ItemFormRequest $request, Item $item): RedirectResponse
     {
+        $request->merge(['item_code' => $item->generateItemCode()]);
+
         DB::transaction(static function () use ($request, $item) {
-            $item = $item->store($request->except(['category', 'location']));
+            $item = $item->create($request->except(['category', 'location']));
             $item->location()->associate($request->location)->save();
             $item->category()->associate($request->category)->save();
 

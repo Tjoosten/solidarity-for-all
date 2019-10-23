@@ -43,7 +43,7 @@
                     <tbody>
                         @forelse ($locations as $location) {{-- Loop trough the locations --}}
                             <tr>
-                                <td class="text-secondary font-weight-bold">{{ $location->coordinator->name }}</td>
+                                <td class="text-secondary font-weight-bold">{{ $location->coordinator->name ?? config('app.name') }}</td>
                                 <td>{{ $location->name }}</td>
                                 <td>{{ $location->full_address }}</td>
                                 <td>{{ $location->items_count }} items</td>
