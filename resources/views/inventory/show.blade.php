@@ -25,10 +25,10 @@
                         <i class="fe fe-plus mr-1 text-secondary"></i> Item toevoegen in de inventaris
                     </h6>
 
-                    @csrf {{-- Form field protection --}}
-                    @method('UPDATE')
-                    @form($item)
-                    @include ('flash::message')
+                    @csrf                           {{-- Form field protection --}}
+                    @method('UPDATE')               {{-- HTTP method spoofing --}}
+                    @include ('flash::message')     {{-- Flash session view partial --}}
+                    @form($item)                    {{-- Bind data to the form --}}
 
                     <div class="row mt-1">
                         <div class="col-4">
