@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Item;
+use App\Models\Location;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
@@ -35,6 +37,10 @@ class SharedController extends Controller
     public function show(Item $item): Renderable
     {
         $this->authorize('show', $item);
-        return view('inventory.show', compact('item'));
+
+        $locations  = Location::all();
+        $categories = Category::all();
+
+        return view('inventory.show', compact('item', 'locations', 'categories'));
     }
 }
