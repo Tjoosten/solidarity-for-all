@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\DeactivationController;
+use App\Http\Controllers\Inventory\AdminController;
 use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Profile\InformationController;
 use App\Http\Controllers\Profile\SecurityController;
@@ -60,3 +61,8 @@ Route::patch('/inzamelpunt/{location}', [LocationController::class, 'update'])->
 Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
 Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('locations.store');
 Route::match(['delete', 'get'], 'inzamelpunt/verwijder/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
+
+// Inventory routes
+Route::get('/inventaris', [AdminController::class, 'index'])->name('inventory.admin.index');
+Route::get('/nieuw-item', [AdminController::class, 'create'])->name('inventory.admin.create');
+Route::post('/nieuw-item', [AdminController::class, 'store'])->name('inventory.admin.store');

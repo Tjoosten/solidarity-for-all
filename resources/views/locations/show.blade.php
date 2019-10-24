@@ -52,7 +52,11 @@
 
                                     <select class="custom-select @error('coordinator', 'is-invalid')" id="coordinator" name="coordinator">
                                         <option value="">-- selecteer de coordinator --</option>
-                                        <option selected value="{{ $location->coordinator->id }}">{{ $location->coordinator->name }}</option>
+
+                                        @if ($location->coordinator()->exists())
+                                            <option selected value="{{ $location->coordinator->id }}">{{ $location->coordinator->name }}</option>
+                                        @endif
+
                                         @options($users, 'coordinator', old('coordinator'))
                                     </select>
 
