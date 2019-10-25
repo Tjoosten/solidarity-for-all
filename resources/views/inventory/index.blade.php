@@ -59,7 +59,7 @@
                                 <td> {{-- Options --}}
                                     <span class="float-right">
                                         @can ('checkout', $item) {{-- User is permitted to checkout items --}}
-                                            <a href="" class="text-danger text-decoration-none">
+                                            <a href="{{ route('inventory.checkout', $item) }}" class="text-danger text-decoration-none">
                                                 <i class="fe fe-minus-square"></i>
                                             </a>
                                         @endcan
@@ -70,7 +70,13 @@
                                             </a>
                                         @endcan
 
-                                        <a href="{{ route('inventory.show', $item) }}" class="text-muted text-decoration-none ml-3">
+                                        @if ($currentUser->hasAnyRole(['admin', 'webmaster']))
+                                            <a href="" class="text-decoration-none text-muted ml-3">
+                                                <i class="fe fe-activity"></i>
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ route('inventory.show', $item) }}" class="text-muted text-decoration-none ml-1">
                                             <i class="fe fe-eye"></i>
                                         </a>
 

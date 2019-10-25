@@ -4,7 +4,9 @@
     <div class="container-fluid py-3">
         <div class="page-header">
             <div class="page-title">Inventaris</div>
-            <div class="page-subtitle">Algemene informatie omtrent {{ ucfirst($item->name) }}</div>
+            <div class="page-subtitle">
+                <span class="font-weight-bold">#{{ $item->item_code }} {{ ucfirst($item->name) }}:</span> Algemene informatie
+            </div>
 
             <div class="page-options d-flex">
                 <a href="{{ route('inventory.admin.index') }}" class="btn btn-orange shadow-sm">

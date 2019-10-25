@@ -49,7 +49,7 @@ class CheckInController extends Controller
                 $request->merge(['note' => "Heeft {$request->quatity} stuks ingeboekt bij het item {$item->name}"]);
             }
 
-            activity('Inventaris')->performedOn($item)->withProperties(['type' => 'ingeboekt'])->log($request->note);
+            activity('inventaris')->performedOn($item)->withProperties(['type' => 'ingeboekt'])->log($request->note);
             flash("Er zijn {$request->quantity} stuks ingeboeks van het volgende item: {$item->name}");
         });
 

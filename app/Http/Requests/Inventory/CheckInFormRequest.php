@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Class CheckInFormRequest
  *
+ * @todo Rename Form request class because this is used by the checkin and checkout
+ *
  * @package App\Http\Requests\Inventory
  */
 class CheckInFormRequest extends FormRequest
@@ -28,8 +30,14 @@ class CheckInFormRequest extends FormRequest
      */
     public function rules():array
     {
+        $criteria = ['required', 'integer', 'min:1'];
+
+        if (request()->is('uitboeken/*')) {
+            $criteria = ['required', 'integer', 'min:1', 'max:' . $this->item->quantity];
+        }
+
         return [
-            'quantity' => ['required', 'integer'],
+            'quantity' => $criteria,
             'note'     => ['max:150'],
         ];
     }

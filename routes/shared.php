@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Inventory\CheckInController;
+use App\Http\Controllers\Inventory\CheckoutController;
 use App\Http\Controllers\Inventory\SharedController;
 
 // Items routes
@@ -20,3 +21,6 @@ Route::get('inventory/{item}', [SharedController::class, 'show'])->name('invento
 // Item state routes
 Route::get('/inboeken/{item}', [CheckInController::class, 'create'])->name('inventory.checkin');
 Route::post('/inboeken/{item}', [CheckInController::class, 'store'])->name('inventory.checkin');
+
+Route::get('/uitboeken/{item}', [CheckoutController::class, 'create'])->name('inventory.checkout');
+Route::post('/uitboeken/{item}', [CheckoutController::class, 'store'])->name('inventory.checkout');
