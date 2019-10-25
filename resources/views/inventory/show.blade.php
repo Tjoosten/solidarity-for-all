@@ -17,6 +17,7 @@
     <div class="container-fluid pb-3">
         <div class="row">
             <div class="col-3"> {{-- Sodebar --}}
+                @include ('inventory._partials.sidebar', ['item' => $item])
             </div> {{-- /// END sidebar --}}
 
             <div class="col-9"> {{-- Content --}}

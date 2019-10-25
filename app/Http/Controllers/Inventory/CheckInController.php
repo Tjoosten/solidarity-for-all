@@ -21,9 +21,18 @@ class CheckInController extends Controller
         $this->middleware(['auth', 'forbid-banned-user', 'can:check-in,item']);
     }
 
+    /**
+     * Method for display the view where users can checkin new items in the inventory.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException <- occurs when the user is not permitted
+     *
+     * @param Item $item The resource entoty from the given item.
+     * @return Renderable
+     */
     public function create(Item $item): Renderable
     {
-
+        $this->authorize('checkin', $item);
+        return view('inventory.states.checkin', compact('item'));
     }
 
     /**
