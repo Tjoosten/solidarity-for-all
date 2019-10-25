@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\DB;
  */
 class CheckInController extends Controller
 {
+    /**
+     * CheckInController constructor.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware(['auth', 'forbid-banned-user', 'can:checkin,item']);
@@ -46,7 +51,7 @@ class CheckInController extends Controller
             $item->increment('quantity', $request->quantity);
 
             if ($request->note === null) {
-                $request->merge(['note' => "Heeft {$request->quatity} stuks ingeboekt bij het item {$item->name}"]);
+                $request->merge(['note' => "Heeft {$request->quantity} stuks ingeboekt bij het item {$item->name}"]);
             }
 
             activity('inventaris')->performedOn($item)->withProperties(['type' => 'ingeboekt'])->log($request->note);

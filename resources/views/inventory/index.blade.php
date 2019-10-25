@@ -71,7 +71,7 @@
                                         @endcan
 
                                         @if ($currentUser->hasAnyRole(['admin', 'webmaster']))
-                                            <a href="" class="text-decoration-none text-muted ml-3">
+                                                <a href="{{ route('inventory.admin.actions', $item) }}" class="text-decoration-none text-muted ml-3">
                                                 <i class="fe fe-activity"></i>
                                             </a>
                                         @endif

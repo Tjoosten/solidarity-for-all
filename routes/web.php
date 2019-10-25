@@ -64,5 +64,6 @@ Route::match(['delete', 'get'], 'inzamelpunt/verwijder/{location}', [LocationCon
 
 // Inventory routes
 Route::get('/inventaris', [AdminController::class, 'index'])->name('inventory.admin.index');
+Route::get('/item/activiteit/{item}', [AdminController::class, 'interactionLog'])->name('inventory.admin.actions');
 Route::get('/nieuw-item', [AdminController::class, 'create'])->name('inventory.admin.create');
 Route::post('/nieuw-item', [AdminController::class, 'store'])->name('inventory.admin.store');

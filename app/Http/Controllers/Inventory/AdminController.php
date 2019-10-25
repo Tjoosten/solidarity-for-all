@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\Location;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +53,18 @@ class AdminController extends Controller
         $categories = Category::pluck('name', 'id');
 
         return view('inventory.create', compact('locations', 'categories'));
+    }
+
+    /**
+     * Method for displaying the interaction log for the given item.
+     *
+     * @param  Item $item The resource entity from the given item.
+     * @return Renderable
+     */
+    public function interactionLog(Item $item): Renderable
+    {
+        $interactions = $item->activities()->paginate(15);
+        return view('inventory.interactions', compact('item', 'interactions'));
     }
 
     /**

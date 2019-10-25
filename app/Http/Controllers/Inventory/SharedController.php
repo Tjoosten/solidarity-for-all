@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\ItemFormRequest;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Location;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -29,6 +31,8 @@ class SharedController extends Controller
     /**
      * Method for displaying the item information in the application.
      *
+     * @todo Provide the update method function for the item information.
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException <- Triggers when the user is not permitted.
      *
      * @param  Item $item The resource entity from the given item.
@@ -42,5 +46,10 @@ class SharedController extends Controller
         $categories = Category::all();
 
         return view('inventory.show', compact('item', 'locations', 'categories'));
+    }
+
+    public function update(ItemFormRequest $request, Item $item): RedirectResponse
+    {
+
     }
 }

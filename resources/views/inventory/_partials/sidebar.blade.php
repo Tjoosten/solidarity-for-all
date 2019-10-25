@@ -12,7 +12,7 @@
     </a>
 
     @if ($currentUser->hasAnyRole(['admin', 'webmaster']))
-        <a href="" class="list-group-item list-group-item-action">
+        <a href="{{ route('inventory.admin.actions', $item) }}" class="{{ active('inventory.admin.actions') }} list-group-item list-group-item-action">
             <i class="fe fe-activity mr-2 text-muted"></i> Interactie geschiedenis
         </a>
     @endif
