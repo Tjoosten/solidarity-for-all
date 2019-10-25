@@ -21,12 +21,13 @@
             </div>
 
             <div class="col-9">
-                <form action="" method="POST" class="card card-body shadow-sm border-0">
+                <form action="{{ route('inventory.checkin', $item) }}" method="POST" class="card card-body shadow-sm border-0">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-plus-square mr-1 text-success"></i> Items inboeken
                     </h6>
 
                     @csrf {{-- Form field protection --}}
+                    @include ('flash::message') {{-- Flash session view partial --}}
 
                     <div class="form-row">
                         <div class="col-8 form-group">

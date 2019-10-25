@@ -4,6 +4,11 @@ namespace App\Http\Requests\Inventory;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class CheckInFormRequest
+ *
+ * @package App\Http\Requests\Inventory
+ */
 class CheckInFormRequest extends FormRequest
 {
     /**
@@ -11,9 +16,9 @@ class CheckInFormRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return auth()->user()->can('checkin', $this->item);
     }
 
     /**
@@ -21,10 +26,11 @@ class CheckInFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            //
+            'quantity' => ['required', 'integer'],
+            'note'     => ['max:150'],
         ];
     }
 }

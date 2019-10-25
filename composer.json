@@ -16,6 +16,7 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "^6.3",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-activitylog": "^3.9",
         "spatie/laravel-permission": "^3.0",
         "watson/active": "^4.0"
     },

@@ -19,3 +19,4 @@ Route::get('inventory/{item}', [SharedController::class, 'show'])->name('invento
 
 // Item state routes
 Route::get('/inboeken/{item}', [CheckInController::class, 'create'])->name('inventory.checkin');
+Route::post('/inboeken/{item}', [CheckInController::class, 'store'])->name('inventory.checkin');
