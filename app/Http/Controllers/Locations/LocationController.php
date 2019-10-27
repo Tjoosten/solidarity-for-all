@@ -46,6 +46,20 @@ class LocationController extends Controller
     }
 
     /**
+     * Method for searching locations in the application.
+     *
+     * @param  Request  $request    Request instance that contains all the request information.
+     * @param  Location $locations  Model class for the collection points locations.
+     * @return Renderable
+     */
+    public function search(Request $request, Location $locations): Renderable
+    {
+        return view('locations.index', [
+            'locations' => $locations->where('name', 'like', "%{$request->term}%")->paginate(),
+        ]);
+    }
+
+    /**
      * Display the given collection point in the application.
      *
      * @param  Location $location The resource entity from the given collection point.

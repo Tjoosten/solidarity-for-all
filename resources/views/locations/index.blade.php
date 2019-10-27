@@ -11,11 +11,13 @@
                     <i class="fe fe-plus"></i>
                 </a>
 
-                <form method="GET" action="" class="border-0 shadow-sm form-search form-inline ml-2">
+                <form method="POST" action="{{ route('locations.search') }}" class="border-0 shadow-sm form-search form-inline ml-2">
+                    @csrf {{-- Form field protection --}}
+
                     <div class="form-group has-search">
                         <label for="search" class="sr-only">Zoek inzamelpunt</label>
                         <span class="fe fe-search form-control-feedback"></span>
-                        <input id="search" type="text" name="term" value="{{ request()->get('term') }}" placeholder="Zoeken" class="form-search border-0 form-control">
+                        <input id="search" type="text" name="term" value="{{ request()->get('term') }}" placeholder="Zoeken op naam" class="form-search border-0 form-control">
                     </div>
                 </form>
             </div>
