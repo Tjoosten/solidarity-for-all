@@ -13,6 +13,8 @@
 
 use App\Http\Controllers\Inventory\CheckInController;
 use App\Http\Controllers\Inventory\CheckoutController;
+use App\Http\Controllers\Profile\InformationController;
+use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\Inventory\SharedController;
 
 // Account settings routes

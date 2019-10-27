@@ -15,8 +15,6 @@ use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\DeactivationController;
 use App\Http\Controllers\Inventory\AdminController;
 use App\Http\Controllers\Locations\LocationController;
-use App\Http\Controllers\Profile\InformationController;
-use App\Http\Controllers\Profile\SecurityController;
 use App\Http\Controllers\Users\UsersControllers;
 use App\Http\Controllers\WelcomeController;
 

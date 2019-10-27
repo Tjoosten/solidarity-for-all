@@ -60,6 +60,10 @@
             <div class="nav-scroller bg-white shadow-sm">
                 <nav class="nav nav-underline">
                     @if ($currentUser->hasAnyRole(['admin', 'webmaster']))
+                        <a href="{{ route('home') }}" class="{{ active('home') }} nav-link">
+                            <i class="fe fe-home mr-1 fe-navbar"></i> Dashboard
+                        </a>
+
                         <a href="{{ route('users.index') }}" class="{{ active('users.*') }} nav-link">
                             <i class="fe fe-users mr-1 fe-navbar"></i> Gebruikers
                         </a>
