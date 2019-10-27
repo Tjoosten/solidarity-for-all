@@ -19,6 +19,7 @@ use App\Http\Controllers\Inventory\SharedController;
 Route::get('inventory/{item}', [SharedController::class, 'show'])->name('inventory.show');
 Route::patch('inventory/{item}', [SharedController::class, 'update'])->name('inventory.item.update');
 Route::match(['get', 'delete'], 'inventory/{item}/verwijderen', [SharedController::class, 'destroy'])->name('inventory.item.destroy');
+Route::post('/inventory/zoeken', [SharedController::class, 'search'])->name('inventory.search');
 
 // Item state routes
 Route::get('/inboeken/{item}', [CheckInController::class, 'create'])->name('inventory.checkin');

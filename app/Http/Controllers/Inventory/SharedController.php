@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventory\ItemFormRequest;
 use App\Models\Category;
 use App\Models\Item;
-use App\Models\Location;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,6 +26,19 @@ class SharedController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'forbid-banned-user']);
+    }
+
+    /**
+     * Method for searching items in the application.
+     *
+     * @param  Request  $request The request instance that holds all the request information.
+     * @param  Item     $items   Database model class for the items.
+     * @return Renderable
+     */
+    public function search(Request $request, Item $items): Renderable
+    {
+        $items = $items->getSearchResults($request->term)->paginate();
+        return view('inventory.index', compact('items'));
     }
 
     /**

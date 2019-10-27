@@ -38,8 +38,7 @@ class AdminController extends Controller
      */
     public function index(Item $items): Renderable
     {
-        $items = $items->paginate();
-        return view('inventory.index', compact('items'));
+        return view('inventory.index', ['items' => $items->paginate()]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Activitylog\Traits\CausesActivity;
@@ -82,7 +83,7 @@ class Item extends Model
     /**
      * Checks whether a item code in the database or not
      *
-     * @param $key
+     * @param  string $code The item code that needs to be checked.
      * @return bool
      */
     private static function codeExists(string $code): bool
@@ -90,5 +91,17 @@ class Item extends Model
         $apiKeyCount = self::where('item_code', '=', $code)->limit(1)->count();
 
         return $apiKeyCount > 0;
+    }
+
+    /**
+     * Method for getting the items where the user is searching for.
+     *
+     * @param  string $term The given search term.
+     * @return Builder
+     */
+    public function getSearchResults(string $term): Builder
+    {
+        return $this->where('item_code', 'LIKE', "%{$term}%")
+            ->orWhere('name', 'LIKE', "%{$term}%");
     }
 }
