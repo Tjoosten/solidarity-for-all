@@ -18,11 +18,23 @@ class ItemFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'      => ['required', 'string', 'max:255'],
-            'quantity'  => ['required', 'integer'],
-            'location'  => ['required', 'integer'],
-            'category'  => ['required', 'integer'],
-        ];
+        return array_merge($this->methodSpecificRules(), [
+                'name'      => ['required', 'string', 'max:255'],
+                'category'  => ['required', 'integer'],
+            ]);
+    }
+
+    /**
+     * Method for request method specific validation rules.
+     *
+     * @return array
+     */
+    private function methodSpecificRules(): array
+    {
+        if ($this->isMethod('POST')) {
+            return ['quantity' => ['required', 'integer'], 'location' => ['required', 'integer']];
+        }
+
+        return [];
     }
 }

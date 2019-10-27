@@ -10,7 +10,7 @@
 
             <div class="page-options d-flex">
                 <a href="{{ route('inventory.admin.index') }}" class="btn btn-orange shadow-sm">
-                    <i class="fe fe-list mr-2"></i> overzicht
+                    <i class="fe fe-list mr-2"></i> Overzicht
                 </a>
             </div>
         </div>

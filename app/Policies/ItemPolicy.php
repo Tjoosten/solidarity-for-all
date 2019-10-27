@@ -40,6 +40,17 @@ class ItemPolicy
     }
 
     /**
+     * Determine whether the user can update the item information or not.
+     * @param  User $user   The resource entity from the authenticated user.
+     * @param  Item $item   The resource entity from the given item.
+     * @return bool
+     */
+    public function update(User $user, Item $item): bool
+    {
+        return $user->hasAnyRole(['admin', 'webmaster']) || $item->location->is($user->location);
+    }
+
+    /**
      * Determine whether the user can checkout items or not.
      *
      * @param  User $user   The resource entity from the authenticated user.

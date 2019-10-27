@@ -23,13 +23,13 @@
             </div> {{-- /// END sidebar --}}
 
             <div class="col-9"> {{-- Content --}}
-                <form action="" method="POST" class="card card-body shadow-sm border-0">
+                <form action="{{ route('inventory.item.update', $item) }}" method="POST" class="card card-body shadow-sm border-0">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
                         <i class="fe fe-plus mr-1 text-secondary"></i> Item toevoegen in de inventaris
                     </h6>
 
                     @csrf                           {{-- Form field protection --}}
-                    @method('UPDATE')               {{-- HTTP method spoofing --}}
+                    @method('PATCH')                {{-- HTTP method spoofing --}}
                     @include ('flash::message')     {{-- Flash session view partial --}}
                     @form($item)                    {{-- Bind data to the form --}}
 
@@ -54,28 +54,15 @@
 
                                 <div class="form-group col-12">
                                     <label for="location">Inzamelpunt <span class="text-danger">*</span></label>
-
-                                    <select id="location" class="custom-select @error('location', 'is-invalid')" name="location">
-                                        <option value="">-- selecteer inzamelpunt --</option>
-
-                                        @foreach ($locations as $location)
-                                            <option value="{{ $location->id }}" @if (old('location_id') || $location->id === $item->location->id) selected @endif>
-                                                {{ ucfirst($location->name) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    @error('location') {{-- Validation error view partial --}}
+                                    <input type="text" disabled class="form-control" value="{{ $item->location->name }}">
                                 </div>
 
                                 <div class="form-group col-12">
                                     <label for="category">Categorie <span class="text-danger">*</span></label>
 
                                     <select id="category" class="custom-select @error('category', 'is-invalid')" @input('category')>
-                                        <option value="">-- selecteer categorie --</option>
-
                                         @foreach ($categories as $category)
-                                            <option value="{{ $location->id }}" @if (old('location_id') || $category->id === $item->category->id) selected @endif>
+                                            <option value="{{ $category->id }}" @if (old('location_id') || $category->id === $item->category->id) selected @endif>
                                                 {{ ucfirst($category->name) }}
                                             </option>
                                         @endforeach
