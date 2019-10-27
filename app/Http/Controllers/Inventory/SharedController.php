@@ -50,8 +50,8 @@ class SharedController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException <- triggered when the usr is not authorized.
      *
-     * @param ItemFormRequest $request The form request class that handles the validation.
-     * @param Item $item The resource entity from the given item.
+     * @param  ItemFormRequest $request The form request class that handles the validation.
+     * @param  Item            $item    The resource entity from the given item.
      * @return RedirectResponse
      */
     public function update(ItemFormRequest $request, Item $item): RedirectResponse
@@ -61,6 +61,13 @@ class SharedController extends Controller
         DB::transaction(static function () use ($request, $item): void {
             $item->update($request->except('category'));
             $item->category()->associate($request->category)->save();
+
+            $user = auth()->user();
+
+            if (! $user->hasAnyRole(['webmaster', 'admin'])) {
+                activity('inventaris')->performedOn($item)->withProperties(['type' => 'ingeboekt'])
+                    ->log($user->name . ' heeft de gegevens van het item aangepast.');
+            }
 
             flash("De item gegevens van {$item->name} zijn met success aangepast");
         });

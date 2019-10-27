@@ -17,11 +17,29 @@ class Item extends Model
     use LogsActivity;
 
     /**
+     * Method for defining the log collection for the method logs.
+     *
+     * @var string
+     */
+    protected static $logName = 'system';
+
+    /**
      * Protected fields for the internal mass-assign system.
      *
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Function for setting the default message for the method logging.
+     *
+     * @param   string $eventName
+     * @return  string
+     */
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "This model has been {$eventName}";
+    }
 
     /**
      * Data for the storage location.
