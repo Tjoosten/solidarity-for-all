@@ -24,6 +24,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->text('extra_information')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             // Foreign keys

@@ -105,8 +105,12 @@ class SharedController extends Controller
         }
 
         // Method is identified as DELETE request. So procees with the actual delete logic.
-        $item->delete();
-        flash(ucfirst($item->name) . ' is verwijderd al item uit de inventaris.', 'success');
+        DB::transaction(static function () use ($request, $item): void {
+            $item->activities()->delete();
+            $item->delete();
+
+            flash(ucfirst($item->name) . ' is verwijderd al item uit de inventaris.', 'success');
+        });
 
         return redirect()->route('inventory.admin.index');
     }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -15,14 +16,15 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Item extends Model
 {
-    use LogsActivity;
+    use LogsActivity, SoftDeletes;
+
 
     /**
-     * Method for defining the log collection for the method logs.
+     * Model actions that needs to be logged.
      *
-     * @var string
+     * @var array
      */
-    protected static $logName = 'system';
+    protected static $recordEvents = [];
 
     /**
      * Protected fields for the internal mass-assign system.
