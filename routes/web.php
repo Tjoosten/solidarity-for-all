@@ -14,6 +14,7 @@
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\DeactivationController;
 use App\Http\Controllers\Inventory\AdminController;
+use App\Http\Controllers\Locations\InventoryController;
 use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Users\UsersControllers;
 use App\Http\Controllers\WelcomeController;
@@ -25,7 +26,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Item category routes
-Route::get('/categorieen', [CategoryController::class, 'index'])->name('tags.overview');
+route::get('/categorieen', [CategoryController::class, 'index'])->name('tags.overview');
 route::post('/categorieen/zoeken', [CategoryController::class, 'search'])->name('tags.search');
 Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('tags.create');
 Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('tags.create');
@@ -52,6 +53,7 @@ Route::get('/activeer/{user}', [DeactivationController::class, 'destroy'])->name
 Route::get('/inzamelpunten', [LocationController::class, 'index'])->name('locations.index');
 Route::post('/inzamelpunten/zoeken', [LocationController::class, 'search'])->name('locations.search');
 Route::get('/inzamelpunt/{location}', [LocationController::class, 'show'])->name('locations.show');
+Route::get('/inzamelpunt/{location}/inventaris', [InventoryController::class, 'index'])->name('locations.inventory');
 Route::patch('/inzamelpunt/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::get('/nieuw-inzamelpunt', [LocationController::class, 'create'])->name('locations.create');
 Route::post('/nieuw-inzamelpunt', [LocationController::class, 'store'])->name('locations.store');

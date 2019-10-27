@@ -3,6 +3,10 @@
         <i class="fe fe-info text-muted mr-2"></i> Algemene informatie
     </a>
 
+    <a href="{{ route('locations.inventory', $location) }}" class="{{ active('locations.inventory') }} list-group-item list-group-item-action">
+        <i class="fe fe-list text-muted mr-2"></i> Locatie inventaris
+    </a>
+
     <a href="{{ route('locations.destroy', $location) }}" class="{{ active('locations.destroy') }} list-group-item list-group-item-action">
         <i class="fe text-danger fe-trash-2 mr-2"></i> Verwijder locatie
     </a>
