@@ -15,6 +15,12 @@ use App\Http\Controllers\Inventory\CheckInController;
 use App\Http\Controllers\Inventory\CheckoutController;
 use App\Http\Controllers\Inventory\SharedController;
 
+// Account settings routes
+Route::get('/account-informatie', [InformationController::class, 'index'])->name('profile.settings.info');
+Route::patch('/account-informatie', [InformationController::class, 'update'])->name('profile.settings.info');
+Route::get('/account-beveiliging', [SecurityController::class, 'index'])->name('profile.settings.security');
+Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->name('profile.settings.security');
+
 // Items routes
 Route::get('inventory/{item}', [SharedController::class, 'show'])->name('inventory.show');
 Route::patch('inventory/{item}', [SharedController::class, 'update'])->name('inventory.item.update');

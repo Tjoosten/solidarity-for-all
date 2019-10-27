@@ -39,6 +39,19 @@ class CategoryController extends Controller
     }
 
     /**
+     * Method for search an category in the application.
+     *
+     * @param  Request  $request    The request instance that holds all the request information.
+     * @param  Category $category   Database model class for the categories.
+     * @return Renderable
+     */
+    public function search(Request $request, Category $category): Renderable
+    {
+        $categories = $category->withCount('items')->where('name', 'LIKE', "%{$request->term}%")->paginate();
+        return view('categories.index', compact('categories'));
+    }
+
+    /**
      * Method for displaying the information about the category in the application.
      *
      * @param  Category $category The unique identifier from the given resource.

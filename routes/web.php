@@ -26,14 +26,9 @@ Auth::routes(['register' => false]);
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Account settings routes
-Route::get('/account-informatie', [InformationController::class, 'index'])->name('profile.settings.info');
-Route::patch('/account-informatie', [InformationController::class, 'update'])->name('profile.settings.info');
-Route::get('/account-beveiliging', [SecurityController::class, 'index'])->name('profile.settings.security');
-Route::patch('/account-beveiliging', [SecurityController::class, 'update'])->name('profile.settings.security');
-
 // Item category routes
 Route::get('/categorieen', [CategoryController::class, 'index'])->name('tags.overview');
+route::post('/categorieen/zoeken', [CategoryController::class, 'search'])->name('tags.search');
 Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('tags.create');
 Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('tags.create');
 Route::match(['get', 'delete'], '/categories/verwijder/{category}', [CategoryController::class, 'delete'])->name('tags.delete');
