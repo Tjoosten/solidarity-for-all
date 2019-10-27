@@ -96,10 +96,10 @@ class Item extends Model
     /**
      * Method for getting the items where the user is searching for.
      *
-     * @param  string $term The given search term.
+     * @param  string|null $term The given search term.
      * @return Builder
      */
-    public function getSearchResults(string $term): Builder
+    public function getSearchResults(?string $term): Builder
     {
         return $this->where('item_code', 'LIKE', "%{$term}%")
             ->orWhere('name', 'LIKE', "%{$term}%");
