@@ -74,4 +74,28 @@ class SharedController extends Controller
 
         return redirect()->route('inventory.show', $item); // Update complete so redirect the user back to the previous page.
     }
+
+    /**
+     * Method for deleting an item in the inventory
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException -> Occurs when the user is not permitted.
+     *
+     * @param Request $request The entity that holds all the request information
+     * @param Item $item The resource entity from the given item.
+     * @return Renderable|RederectResponse
+     */
+    public function destroy(Request $request, Item $item)
+    {
+        $this->authorize('destroy', $item);
+
+        if ($request->isMethod('GET')) {
+            return view('inventory.delete', compact('item'));
+        }
+
+        // Method is identified as DELETE request. So procees with the actual delete logic.
+        $item->delete();
+        flash(ucfirst($item->name) . ' is verwijderd al item uit de inventaris.', 'success');
+
+        return redirect()->route('inventory.admin.index');
+    }
 }

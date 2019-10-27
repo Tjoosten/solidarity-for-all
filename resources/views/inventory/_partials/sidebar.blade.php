@@ -17,7 +17,7 @@
         </a>
     @endif
 
-    <a href="" class="list-group-item-action list-group-item">
+    <a href="{{ route('inventory.item.destroy', $item) }}" class="{{ active('inventory.item.destroy') }} list-group-item-action list-group-item">
         <i class="fe fe-trash-2 mr-2 text-muted"></i> Item verwijderen
     </a>
 </div>

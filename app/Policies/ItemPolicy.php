@@ -24,7 +24,19 @@ class ItemPolicy
      */
     public function show(User $user, Item $item): bool
     {
-        return $user->hasAnyRole(['admin', 'webmaster']) || $user->location->is($item->location());
+        return $user->hasAnyRole(['admin', 'webmaster']) || $user->location->is($item->location);
+    }
+
+    /**
+     * Determine whether the user can delete an inventory item or not.
+     *
+     * @param  User $user   The resource entity from the authenticated user.
+     * @param  Item $item   The resource entity from the given item.
+     * @return bool
+     */
+    public function destroy(User $user, Item $item): bool
+    {
+        return $user->hasAnyRole(['admin', 'webmaster']) || $user->location->is($item->location);
     }
 
     /**
@@ -41,6 +53,7 @@ class ItemPolicy
 
     /**
      * Determine whether the user can update the item information or not.
+     *
      * @param  User $user   The resource entity from the authenticated user.
      * @param  Item $item   The resource entity from the given item.
      * @return bool
