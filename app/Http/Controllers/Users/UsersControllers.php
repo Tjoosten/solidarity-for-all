@@ -44,6 +44,17 @@ class UsersControllers extends Controller
     }
 
     /**
+     * Method for searching users in the application.
+     *
+     * @param  Request $request The request instance that holds all the request information.
+     * @return Renderable
+     */
+    public function search(Request $request, User $users): Renderable
+    {
+        return view('users.index', ['users' => $users->getSearchResults($request->term)->paginate()]);
+    }
+
+    /**
      * Method for displaying the user information from a given user.
      *
      * @param  User $user The database entity from the given user in the storage.

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +50,19 @@ class User extends Authenticatable implements BannableContract
     public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Method for getting the search based on the user given term.
+     *
+     * @param  string|null $term The user given term.
+     * @return Builder
+     */
+    public function getSearchResults(?string $term): Builder
+    {
+        return $this->where('name', 'LIKE', "%{$term}%")
+            ->orWhere('email', 'LIKE', "%{$term}%")
+            ->orWhere('phone_number', "%{$term}%");
     }
 
     /**

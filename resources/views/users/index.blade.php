@@ -11,7 +11,8 @@
                     <i class="fe fe-user-plus"></i>
                 </a>
 
-                <form method="GET" action="" class="border-0 shadow-sm form-search form-inline ml-2">
+                <form method="POST" action="{{ route('users.search') }}" class="border-0 shadow-sm form-search form-inline ml-2">
+                    @csrf {{-- Form field protection --}}
                     <div class="form-group has-search">
                         <label for="search" class="sr-only">Zoek Gebruiker</label>
                         <span class="fe fe-search form-control-feedback"></span>
